@@ -1,4 +1,3 @@
-osx_image: xcode9.2
 language: objective-c
 xcode_workspace: SwiftFP.xcworkspace
 xcode_scheme: SwiftFP
@@ -8,9 +7,7 @@ before_install:
     - pod repo update
 
 script:
-    - set -o pipefail && xcodebuild test -sdk iphonesimulator -workspace SwiftFP.xcworkspace  -scheme SwiftFP  CODE_SIGNING_REQUIRED=NO -destination 'platform=iOS Simulator,name=iPhone 7 Plus'
-    GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES 
-    GCC_GENERATE_TEST_COVERAGE_FILES=YES
+    - set -o pipefail && xcodebuild test -sdk iphonesimulator -workspace SwiftFP.xcworkspace  -scheme SwiftFP  CODE_SIGNING_REQUIRED=NO -destination 'platform=iOS Simulator,name=iPhone 7 Plus' GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES
 
 after_success: 
     - slather
