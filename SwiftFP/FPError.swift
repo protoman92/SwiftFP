@@ -11,6 +11,7 @@ public enum FPError {
     case any(String?)
     case optional(String?)
     case `try`(String?)
+    case timeout(TimeInterval)
     
     public var message: String? {
         switch self {
@@ -22,6 +23,9 @@ public enum FPError {
             
         case .`try`(let msg):
             return msg
+            
+        case .timeout(let duration):
+            return "Timed out after \(duration)s"
         }
     }
 }

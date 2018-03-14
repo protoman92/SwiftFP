@@ -88,4 +88,22 @@ public extension Composable {
         
         return Composable(ff)
     }
+
+    /// Catch the error and supply a different value.
+    ///
+    /// - Parameter c: A Error transform function.
+    /// - Returns: A Composable instance.
+    public static func `catch`(_ c: @escaping (Error) throws -> T) -> Composable<T> {
+        let ff: FunctionF<T> = {(f: @escaping Function<T>) -> Function<T> in
+            return {
+                do {
+                    return try f()
+                } catch let e {
+                    return try c(e)
+                }
+            }
+        }
+        
+        return Composable(ff)
+    }
 }

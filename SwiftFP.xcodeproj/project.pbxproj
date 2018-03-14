@@ -12,6 +12,7 @@
 		D30232A4205978810003E48C /* Publish.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30232A3205978810003E48C /* Publish.swift */; };
 		D30232A6205979970003E48C /* ComposableTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30232A5205979970003E48C /* ComposableTest.swift */; };
 		D30232A820597A880003E48C /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30232A720597A880003E48C /* Error.swift */; };
+		D30232AA20598A2E0003E48C /* Timeout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30232A920598A2E0003E48C /* Timeout.swift */; };
 		D3068D3E2058BD27000BD522 /* SwiftFP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3068D342058BD27000BD522 /* SwiftFP.framework */; };
 		D3068D452058BD27000BD522 /* SwiftFP.h in Headers */ = {isa = PBXBuildFile; fileRef = D3068D372058BD27000BD522 /* SwiftFP.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3068D572058BDD5000BD522 /* Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3068D4E2058BDD5000BD522 /* Optional.swift */; };
@@ -51,6 +52,7 @@
 		D30232A3205978810003E48C /* Publish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Publish.swift; sourceTree = "<group>"; };
 		D30232A5205979970003E48C /* ComposableTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposableTest.swift; sourceTree = "<group>"; };
 		D30232A720597A880003E48C /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		D30232A920598A2E0003E48C /* Timeout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timeout.swift; sourceTree = "<group>"; };
 		D3068D342058BD27000BD522 /* SwiftFP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftFP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3068D372058BD27000BD522 /* SwiftFP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftFP.h; sourceTree = "<group>"; };
 		D3068D382058BD27000BD522 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				D30232A1205973BF0003E48C /* Composable.swift */,
 				D30232A3205978810003E48C /* Publish.swift */,
 				D30232A720597A880003E48C /* Error.swift */,
+				D30232A920598A2E0003E48C /* Timeout.swift */,
 			);
 			path = Compose;
 			sourceTree = "<group>";
@@ -392,6 +395,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3068D5D2058BDD5000BD522 /* Reader.swift in Sources */,
+				D30232AA20598A2E0003E48C /* Timeout.swift in Sources */,
 				D3068D5B2058BDD5000BD522 /* Optional+Try.swift in Sources */,
 				D3068D6E2058C0E6000BD522 /* FPError.swift in Sources */,
 				D30232A820597A880003E48C /* Error.swift in Sources */,

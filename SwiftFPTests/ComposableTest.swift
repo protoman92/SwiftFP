@@ -91,40 +91,147 @@ public final class ComposableTest: XCTestCase {
         XCTAssertEqual(actualError?.localizedDescription, error)
     }
     
+    public func test_composeTimeout_shouldWork() {
+        /// Setup
+        var actualError1: Error?
+        var actualError2: Error?
+        var actualResult1: Int?
+        var actualResult2: Int?
+        let timeout: TimeInterval = 1
+        let dispatchQueue = DispatchQueue.global(qos: .background)
+        
+        let fInt1: Function<Int> = {
+            Thread.sleep(forTimeInterval: timeout * 2)
+            return 1
+        }
+        
+        let fInt2: Function<Int> = {
+            Thread.sleep(forTimeInterval: timeout / 2)
+            return 2
+        }
+        
+        let timeoutF = Composable<Int>.timeout(timeout)(dispatchQueue)
+        
+        /// When
+        do {
+            actualResult1 = try timeoutF.invoke(fInt1)()
+        } catch let e {
+            actualError1 = e
+        }
+        
+        do {
+            actualResult2 = try timeoutF.invoke(fInt2)()
+        } catch let e {
+            actualError2 = e
+        }
+        
+        /// Then
+        XCTAssertTrue(actualError1 is FPError)
+        XCTAssertNil(actualResult1)
+        XCTAssertNil(actualError2)
+        XCTAssertEqual(actualResult2, 2)
+    }
+    
+    public func test_composeCatch_shouldWork() {
+        /// Setup
+        var actualError: Error?
+        var actualResult: Int?
+        let fInt: Function<Int> = {throw FPError.any("")}
+        
+        /// When
+        do {
+            actualResult = try Composable.catch({_ in 1}).invoke(fInt)()
+        } catch let e {
+            actualError = e
+        }
+        
+        /// Then
+        XCTAssertNil(actualError)
+        XCTAssertEqual(actualResult, 1)
+    }
+    
+    public func test_composeCatchThrows_shouldWork() {
+        /// Setup
+        var actualError: Error?
+        var actualResult: Int?
+        let fInt: Function<Int> = {throw FPError.any("")}
+        
+        /// When
+        do {
+            actualResult = try Composable.catch({throw $0}).invoke(fInt)()
+        } catch let e {
+            actualError = e
+        }
+        
+        /// Then
+        XCTAssertNotNil(actualError)
+        XCTAssertTrue(actualError is FPError)
+        XCTAssertNil(actualResult)
+    }
+    
     public func test_multipleComposition_shouldWork() {
         /// Setup
         var actualError: Error?
+        var actualResult: Int?
         var publishCount = 0
         let error = "Error"
         let retryCount = 10
+        let dispatchQueue = DispatchQueue.global(qos: .background)
         let fInt: Function<Int> = {throw FPError.any(error)}
         let publishF: (Error) -> Void = {_ in publishCount += 1}
         
+        let reset: () -> Void = {
+            actualError = nil
+            actualResult = nil
+            publishCount = 0
+        }
+        
         /// When & Then 1
         do {
-            _ = try Composable<Int>.publishError(publishF)
+            actualResult = try Composable<Int>.publishError(publishF)
                 .compose(Composable.retry(retryCount))
+                .compose(Composable.timeout(10)(dispatchQueue))
                 .invoke(fInt)()
         } catch let e {
             actualError = e
         }
         
         XCTAssertEqual(actualError?.localizedDescription, error)
+        XCTAssertNil(actualResult)
         XCTAssertEqual(publishCount, 1)
         
         /// When & Then 2
-        actualError = nil
-        publishCount = 0
+        reset()
         
         do {
-            _ = try Composable<Int>.retry(retryCount)
+            actualResult = try Composable<Int>.retry(retryCount)
                 .compose(Composable.publishError(publishF))
+                .compose(Composable.timeout(10)(dispatchQueue))
                 .invoke(fInt)()
         } catch let e {
             actualError = e
         }
         
         XCTAssertEqual(actualError?.localizedDescription, error)
+        XCTAssertNil(actualResult)
         XCTAssertEqual(publishCount, retryCount + 1)
+        
+        /// When & Then 3
+        reset()
+        
+        do {
+            actualResult = try Composable<Int>.retry(100000)
+                .compose(Composable.retry(100000))
+                .compose(Composable.publishError(publishF))
+                .compose(Composable.timeout(2)(dispatchQueue))
+                .compose(Composable.catch({_ in 1})) // Nullify all above.
+                .invoke(fInt)()
+        } catch let e {
+            actualError = e
+        }
+        
+        XCTAssertNil(actualError)
+        XCTAssertEqual(actualResult, 1)
+        XCTAssertEqual(publishCount, 0)
     }
 }
