@@ -1,14 +1,14 @@
+osx_image: xcode9.2
 language: objective-c
 xcode_workspace: SwiftFP.xcworkspace
 xcode_scheme: SwiftFP
-xcode_sdk: iphonesimulator10.1
+xcode_sdk: iphonesimulator11.2
 before_install:
 - gem install cocoapods slather
 - pod repo update
 
 script:
-- set -o pipefail && xcodebuild test -sdk iphonesimulator -workspace SwiftFP.xcworkspace  -scheme SwiftFP  CODE_SIGNING_REQUIRED=NO -destination 'platform=iOS Simulator,name=iPhone 7 Plus'
-
+- set -o pipefail && xcodebuild clean test -sdk iphonesimulator -workspace SwiftFP.xcworkspace -scheme SwiftFP -destination 'platform=iOS Simulator,name=iPhone 7' CODE_SIGNING_REQUIRED=NO
 - pod lib lint --quick
 
 after_success: slather
