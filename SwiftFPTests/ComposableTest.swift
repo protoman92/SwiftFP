@@ -87,7 +87,7 @@ public final class ComposableTest: XCTestCase {
         
         /// Then
         XCTAssertEqual(actualTryCount, retryCount + 1)
-        XCTAssertLessThan((difference / 10 - duration) / duration, 0.05)
+        XCTAssertLessThan((difference / 10 - duration) / duration, 0.1)
         XCTAssertEqual(actualError?.localizedDescription, error)
     }
     
