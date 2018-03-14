@@ -11,11 +11,11 @@ public protocol ReaderConvertibleType {
     associatedtype Env
     associatedtype Val
     
-    func asReader() -> Reader<Env,Val>
+    func asReader() -> Reader<Env, Val>
 }
 
 /// A Reader that has the same signature for A and B.
-public typealias EQReader<A> = Reader<A,A>
+public typealias EQReader<A> = Reader<A, A>
 
 public protocol ReaderType: ReaderConvertibleType {
     var f: (Env) throws -> Val { get }
@@ -39,7 +39,7 @@ public extension ReaderType {
     ///
     /// - Parameter g: Tranform function.
     /// - Returns: A Reader instance.
-    public func modify<Env1>(_ g: @escaping (Env1) throws -> Env) -> Reader<Env1,Val> {
+    public func modify<Env1>(_ g: @escaping (Env1) throws -> Env) -> Reader<Env1, Val> {
         return Reader({try self.run(g($0))})
     }
     
@@ -47,15 +47,15 @@ public extension ReaderType {
     ///
     /// - Parameter g: Transform function.
     /// - Returns: A Reader instance.
-    public func map<Val1>(_ g: @escaping (Val) throws -> Val1) -> Reader<Env,Val1> {
-        return Reader<Env,Val1>({try g(self.run($0))})
+    public func map<Val1>(_ g: @escaping (Val) throws -> Val1) -> Reader<Env, Val1> {
+        return Reader<Env, Val1>({try g(self.run($0))})
     }
     
     /// Applicative.
     ///
     /// - Parameter r: ReaderConvertibleType instance.
     /// - Returns: A Reader instance.
-    public func apply<R,Val1>(_ r: R) -> Reader<Env,Val1>
+    public func apply<R, Val1>(_ r: R) -> Reader<Env, Val1>
         where R: ReaderConvertibleType, R.Env == Env, R.Val == (Val) throws -> Val1
     {
         return flatMap({val in r.asReader().map({try $0(val)})})
@@ -65,10 +65,10 @@ public extension ReaderType {
     ///
     /// - Parameter g: Transform function.
     /// - Returns: A Reader instance.
-    public func flatMap<R,Val1>(_ g: @escaping (Val) throws -> R) -> Reader<Env,Val1>
+    public func flatMap<R, Val1>(_ g: @escaping (Val) throws -> R) -> Reader<Env, Val1>
         where R: ReaderConvertibleType, R.Env == Env, R.Val == Val1
     {
-        return Reader<Env,Val1>({try g(self.f($0)).asReader().run($0)})
+        return Reader<Env, Val1>({try g(self.f($0)).asReader().run($0)})
     }
     
     /// Zip with another ReaderConvertibleType.
@@ -77,8 +77,8 @@ public extension ReaderType {
     ///   - reader: A ReaderConvertibleType instance.
     ///   - g: Transform function.
     /// - Returns: A Reader instance.
-    public func zip<R,Val1,U>(with reader: R, _ g: @escaping (Val, Val1) throws -> U)
-        -> Reader<Env,U> where R: ReaderConvertibleType, R.Env == Env, R.Val == Val1
+    public func zip<R, Val1, U>(with reader: R, _ g: @escaping (Val, Val1) throws -> U)
+        -> Reader<Env, U> where R: ReaderConvertibleType, R.Env == Env, R.Val == Val1
     {
         return flatMap({val in reader.asReader().map({try g(val, $0)})})
     }
@@ -89,14 +89,14 @@ public extension ReaderType {
     ///   - reader: A ReaderConvertibleType instance.
     ///   - g: Transform function.
     /// - Returns: A Reader instance.
-    public func zip<R,Env1,Val1,U>(with reader: R, _ g: @escaping (Val, Val1) throws -> U)
+    public func zip<R, Env1, Val1, U>(with reader: R, _ g: @escaping (Val, Val1) throws -> U)
         -> Reader<(Env,Env1),U> where R: ReaderConvertibleType, R.Env == Env1, R.Val == Val1
     {
         return Reader({try g(self.run($0.0), reader.asReader().run($0.1))})
     }
 }
 
-public struct Reader<Env,Val> {
+public struct Reader<Env, Val> {
     public let f: (Env) throws -> Val
     
     public init(_ f: @escaping (Env) throws -> Val) {
@@ -105,7 +105,7 @@ public struct Reader<Env,Val> {
 }
 
 extension Reader: ReaderType {
-    public func asReader() -> Reader<Env,Val> {
+    public func asReader() -> Reader<Env, Val> {
         return self
     }
 }
@@ -116,15 +116,15 @@ public extension Reader {
     ///
     /// - Returns: A Reader instance.
     public static func eq<Env>() -> EQReader<Env> {
-        return Reader<Env,Env>({$0})
+        return Reader<Env, Env>({$0})
     }
     
     /// Get a Reader whose f simply returns a value.
     ///
     /// - Parameter value: Base.Val instance.
     /// - Returns: A Reader instance.
-    public static func just<Env,Val>(_ value: Val) -> Reader<Env,Val> {
-        return Reader<Env,Val>({_ in value})
+    public static func just<Env, Val>(_ value: Val) -> Reader<Env, Val> {
+        return Reader<Env, Val>({_ in value})
     }
     
     /// Convenient method to zip two ReaderConvertibleType.
@@ -134,9 +134,10 @@ public extension Reader {
     ///   - r2: R2 instance.
     ///   - g: Transform function.
     /// - Returns: A Reader instance.
-    public static func zip<R1,R2,Env,Val,Val1,U>(_ r1: R1, _ r2: R2,
-                                                 _ g: @escaping (Val, Val1) throws -> U)
-        -> Reader<Env,U> where
+    public static func zip<R1, R2, Env, Val, Val1, U>(
+        _ r1: R1, _ r2: R2,
+        _ g: @escaping (Val, Val1) throws -> U)
+        -> Reader<Env, U> where
         R1: ReaderConvertibleType,
         R2: ReaderConvertibleType,
         R1.Env == Env, R1.Val == Val,
@@ -152,9 +153,10 @@ public extension Reader {
     ///   - r2: R2 instance.
     ///   - g: Transform function.
     /// - Returns: A Reader instance.
-    public static func zip<R1,R2,Env,Val,Env1,Val1,U>(_ r1: R1, _ r2: R2,
-                                                      _ g: @escaping (Val, Val1) throws -> U)
-        -> Reader<(Env, Env1),U> where
+    public static func zip<R1, R2, Env, Val, Env1, Val1, U>(
+        _ r1: R1, _ r2: R2,
+        _ g: @escaping (Val, Val1) throws -> U)
+        -> Reader<(Env, Env1), U> where
         R1: ReaderConvertibleType,
         R2: ReaderConvertibleType,
         R1.Env == Env, R1.Val == Val,
@@ -169,15 +171,15 @@ public extension Reader {
     ///   - readers: A Sequence of ReaderConvertibleType.
     ///   - g: Transform function.
     /// - Returns: A Reader instance.
-    public static func zip<S,Env,Val,Val1>(_ readers: S,
-                                           _ g: @escaping ([Val]) throws -> Val1)
-        -> Reader<Env,Val1> where
+    public static func zip<S, Env, Val, Val1>(_ readers: S,
+                                              _ g: @escaping ([Val]) throws -> Val1)
+        -> Reader<Env, Val1> where
         S: Sequence,
         S.Iterator.Element: ReaderConvertibleType,
         S.Iterator.Element.Env == Env,
         S.Iterator.Element.Val == Val
     {
-        return Reader<Env,Val1>({(env: Env) throws -> Val1 in
+        return Reader<Env, Val1>({(env: Env) throws -> Val1 in
             try g(readers.map({$0.asReader()}).map({try $0.run(env)}))
         })
     }
@@ -188,9 +190,9 @@ public extension Reader {
     ///   - g: Transform function.
     ///   - readers: Varargs of ReaderConvertibleType.
     /// - Returns: A Reader instance.
-    public static func zip<R,Env,Val,Val1>(_ g: @escaping ([Val]) throws -> Val1,
-                                           _ readers: R...)
-        -> Reader<Env,Val1> where
+    public static func zip<R, Env, Val, Val1>(_ g: @escaping ([Val]) throws -> Val1,
+                                              _ readers: R...)
+        -> Reader<Env, Val1> where
         R: ReaderConvertibleType,
         R.Env == Env, R.Val == Val
     {
@@ -205,15 +207,15 @@ public extension Reader {
     ///   - readers: A Sequence of ReaderConvertibleType.
     ///   - g: Transform function.
     /// - Returns: A Reader instance.
-    public static func zip<S,Env,Val,Val1>(ignoringErrors readers: S,
-                                           _ g: @escaping ([Val]) throws -> Val1)
-        -> Reader<Env,Val1> where
+    public static func zip<S, Env, Val, Val1>(ignoringErrors readers: S,
+                                              _ g: @escaping ([Val]) throws -> Val1)
+        -> Reader<Env, Val1> where
         S: Sequence,
         S.Iterator.Element: ReaderConvertibleType,
         S.Iterator.Element.Env == Env,
         S.Iterator.Element.Val == Val
     {
-        return Reader<Env,Val1>({(env: Env) throws -> Val1 in
+        return Reader<Env, Val1>({(env: Env) throws -> Val1 in
             try g(readers
                 .map({$0.asReader()})
                 .map({$0.tryRun(env)})
@@ -227,9 +229,9 @@ public extension Reader {
     ///   - g: Transform function.
     ///   - readers: Varargs of ReaderConvertibleType.
     /// - Returns: A Reader instance.
-    public static func zip<R,Env,Val,Val1>(_ g: @escaping ([Val]) throws -> Val1,
-                                           ignoringErrors readers: R...)
-        -> Reader<Env,Val1> where
+    public static func zip<R, Env, Val, Val1>(_ g: @escaping ([Val]) throws -> Val1,
+                                              ignoringErrors readers: R...)
+        -> Reader<Env, Val1> where
         R: ReaderConvertibleType,
         R.Env == Env, R.Val == Val
     {

@@ -4,7 +4,13 @@ xcode_workspace: SwiftFP.xcworkspace
 xcode_scheme: SwiftFP
 xcode_sdk: iphonesimulator10.1
 before_install:
+    - gem install cocoapods slather
     - pod repo update
 
 script:
     - set -o pipefail && xcodebuild test -sdk iphonesimulator -workspace SwiftFP.xcworkspace  -scheme SwiftFP  CODE_SIGNING_REQUIRED=NO -destination 'platform=iOS Simulator,name=iPhone 7 Plus'
+    GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES 
+    GCC_GENERATE_TEST_COVERAGE_FILES=YES
+
+after_success: 
+    - slather

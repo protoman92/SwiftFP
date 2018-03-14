@@ -14,7 +14,7 @@ public final class StateTest: XCTestCase {
         //// Setup
         let s1 = State<Int, Int>({($0, $0)}).modify({$0 * 2}).map({$0 * 3})
         
-        let s2 = s1.flatMap({(a) -> State<Int,Int> in
+        let s2 = s1.flatMap({(a) -> State<Int, Int> in
             if a % 2 == 0 {
                 return State<Int, Int>({($0, $0)})
             } else {

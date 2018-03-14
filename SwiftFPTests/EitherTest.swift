@@ -12,8 +12,8 @@ import XCTest
 public final class EitherTest: XCTestCase {
     public func test_eitherMonad_shouldWork() {
         /// Setup
-        let e1 = Either<Int,Double>.left(1)
-        let e2 = Either<Int,Double>.right(2)
+        let e1 = Either<Int, Double>.left(1)
+        let e2 = Either<Int, Double>.right(2)
         
         // When & Then
         XCTAssertEqual(e1.projection.left.map(Double.init).left, 1)
@@ -24,8 +24,8 @@ public final class EitherTest: XCTestCase {
     
     public func test_eitherBimap_shouldWork() {
         /// Setup
-        let e1 = Either<Int,Double>.left(1)
-        let e2 = Either<Int,Double>.right(2)
+        let e1 = Either<Int, Double>.left(1)
+        let e2 = Either<Int, Double>.right(2)
         let f1: (Int) -> String = String.init
         let f2: (Double) -> Int = Int.init
         let e11 = e1.bimap(f1, f2)

@@ -24,6 +24,7 @@
 		D3068D6A2058BDE1000BD522 /* ReaderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3068D652058BDE1000BD522 /* ReaderTest.swift */; };
 		D3068D6C2058BE6B000BD522 /* Optional+Zip.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3068D6B2058BE6B000BD522 /* Optional+Zip.swift */; };
 		D3068D6E2058C0E6000BD522 /* FPError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3068D6D2058C0E6000BD522 /* FPError.swift */; };
+		D3F70EAE20591E970039A97F /* Try+Zip.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F70EAD20591E970039A97F /* Try+Zip.swift */; };
 		FA98F433CD29E8A1C6F3A260 /* Pods_SwiftFPTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74E827F78B340C57BF7EC0DA /* Pods_SwiftFPTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +63,7 @@
 		D3068D652058BDE1000BD522 /* ReaderTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReaderTest.swift; sourceTree = "<group>"; };
 		D3068D6B2058BE6B000BD522 /* Optional+Zip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Zip.swift"; sourceTree = "<group>"; };
 		D3068D6D2058C0E6000BD522 /* FPError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FPError.swift; sourceTree = "<group>"; };
+		D3F70EAD20591E970039A97F /* Try+Zip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Try+Zip.swift"; sourceTree = "<group>"; };
 		D430AC7981A484008019F5D1 /* Pods-SwiftFP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftFP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftFP/Pods-SwiftFP.debug.xcconfig"; sourceTree = "<group>"; };
 		FE404559083ED7A0154F7D6C /* Pods_SwiftFP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftFP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -141,6 +143,7 @@
 				D3068D372058BD27000BD522 /* SwiftFP.h */,
 				D3068D512058BDD5000BD522 /* Try.swift */,
 				D3068D552058BDD5000BD522 /* Try+Optional.swift */,
+				D3F70EAD20591E970039A97F /* Try+Zip.swift */,
 			);
 			path = SwiftFP;
 			sourceTree = "<group>";
@@ -363,6 +366,7 @@
 				D3068D5D2058BDD5000BD522 /* Reader.swift in Sources */,
 				D3068D5B2058BDD5000BD522 /* Optional+Try.swift in Sources */,
 				D3068D6E2058C0E6000BD522 /* FPError.swift in Sources */,
+				D3F70EAE20591E970039A97F /* Try+Zip.swift in Sources */,
 				D3068D572058BDD5000BD522 /* Optional.swift in Sources */,
 				D3068D592058BDD5000BD522 /* State.swift in Sources */,
 				D3068D5E2058BDD5000BD522 /* Try+Optional.swift in Sources */,

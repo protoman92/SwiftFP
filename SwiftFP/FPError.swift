@@ -32,8 +32,4 @@ extension FPError: LocalizedError {
     public var errorDescription: String? {
         return message
     }
-    
-    public var failureReason: String? {
-        return message
-    }
 }
