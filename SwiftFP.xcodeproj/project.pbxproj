@@ -8,10 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		8AACA875D3D7D8E79891115C /* Pods_SwiftFP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE404559083ED7A0154F7D6C /* Pods_SwiftFP.framework */; };
-		D30232A2205973BF0003E48C /* Composable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30232A1205973BF0003E48C /* Composable.swift */; };
-		D30232A4205978810003E48C /* Publish.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30232A3205978810003E48C /* Publish.swift */; };
-		D30232A6205979970003E48C /* ComposableTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30232A5205979970003E48C /* ComposableTest.swift */; };
-		D30232AA20598A2E0003E48C /* Timeout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30232A920598A2E0003E48C /* Timeout.swift */; };
 		D3068D3E2058BD27000BD522 /* SwiftFP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3068D342058BD27000BD522 /* SwiftFP.framework */; };
 		D3068D452058BD27000BD522 /* SwiftFP.h in Headers */ = {isa = PBXBuildFile; fileRef = D3068D372058BD27000BD522 /* SwiftFP.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3068D572058BDD5000BD522 /* Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3068D4E2058BDD5000BD522 /* Optional.swift */; };
@@ -29,10 +25,6 @@
 		D3068D6C2058BE6B000BD522 /* Optional+Zip.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3068D6B2058BE6B000BD522 /* Optional+Zip.swift */; };
 		D3068D6E2058C0E6000BD522 /* FPError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3068D6D2058C0E6000BD522 /* FPError.swift */; };
 		D30DE336205A11CC00A66C8F /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D30DE335205A11CC00A66C8F /* README.md */; };
-		D30DE33D205A1DFB00A66C8F /* Noop.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30DE33C205A1DFB00A66C8F /* Noop.swift */; };
-		D30DE33F205A218000A66C8F /* Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30DE33E205A218000A66C8F /* Sync.swift */; };
-		D3F118FF2059FE8300F5B028 /* Catch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F118FE2059FE8300F5B028 /* Catch.swift */; };
-		D3F119012059FE9E00F5B028 /* Retry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F119002059FE9E00F5B028 /* Retry.swift */; };
 		D3F70EAE20591E970039A97F /* Try+Zip.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F70EAD20591E970039A97F /* Try+Zip.swift */; };
 		FA98F433CD29E8A1C6F3A260 /* Pods_SwiftFPTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74E827F78B340C57BF7EC0DA /* Pods_SwiftFPTests.framework */; };
 /* End PBXBuildFile section */
@@ -52,10 +44,6 @@
 		27FB91B3118BA1CCEF23AB25 /* Pods-SwiftFPTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftFPTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftFPTests/Pods-SwiftFPTests.debug.xcconfig"; sourceTree = "<group>"; };
 		74E827F78B340C57BF7EC0DA /* Pods_SwiftFPTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftFPTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD555DD4151AEE981CE4B0B1 /* Pods-SwiftFP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftFP.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftFP/Pods-SwiftFP.release.xcconfig"; sourceTree = "<group>"; };
-		D30232A1205973BF0003E48C /* Composable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Composable.swift; sourceTree = "<group>"; };
-		D30232A3205978810003E48C /* Publish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Publish.swift; sourceTree = "<group>"; };
-		D30232A5205979970003E48C /* ComposableTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposableTest.swift; sourceTree = "<group>"; };
-		D30232A920598A2E0003E48C /* Timeout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timeout.swift; sourceTree = "<group>"; };
 		D3068D342058BD27000BD522 /* SwiftFP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftFP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3068D372058BD27000BD522 /* SwiftFP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftFP.h; sourceTree = "<group>"; };
 		D3068D382058BD27000BD522 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -77,10 +65,6 @@
 		D3068D6B2058BE6B000BD522 /* Optional+Zip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Zip.swift"; sourceTree = "<group>"; };
 		D3068D6D2058C0E6000BD522 /* FPError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FPError.swift; sourceTree = "<group>"; };
 		D30DE335205A11CC00A66C8F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		D30DE33C205A1DFB00A66C8F /* Noop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Noop.swift; sourceTree = "<group>"; };
-		D30DE33E205A218000A66C8F /* Sync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sync.swift; sourceTree = "<group>"; };
-		D3F118FE2059FE8300F5B028 /* Catch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Catch.swift; sourceTree = "<group>"; };
-		D3F119002059FE9E00F5B028 /* Retry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Retry.swift; sourceTree = "<group>"; };
 		D3F70EAD20591E970039A97F /* Try+Zip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Try+Zip.swift"; sourceTree = "<group>"; };
 		D430AC7981A484008019F5D1 /* Pods-SwiftFP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftFP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftFP/Pods-SwiftFP.debug.xcconfig"; sourceTree = "<group>"; };
 		FE404559083ED7A0154F7D6C /* Pods_SwiftFP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftFP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -127,36 +111,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		D302329F2059738B0003E48C /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				D3068D562058BDD5000BD522 /* Either.swift */,
-				D3068D4E2058BDD5000BD522 /* Optional.swift */,
-				D3068D522058BDD5000BD522 /* Optional+Try.swift */,
-				D3068D6B2058BE6B000BD522 /* Optional+Zip.swift */,
-				D3068D542058BDD5000BD522 /* Reader.swift */,
-				D3068D502058BDD5000BD522 /* State.swift */,
-				D3068D512058BDD5000BD522 /* Try.swift */,
-				D3068D552058BDD5000BD522 /* Try+Optional.swift */,
-				D3F70EAD20591E970039A97F /* Try+Zip.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		D30232A0205973AB0003E48C /* Compose */ = {
-			isa = PBXGroup;
-			children = (
-				D3F118FE2059FE8300F5B028 /* Catch.swift */,
-				D30232A1205973BF0003E48C /* Composable.swift */,
-				D30DE33C205A1DFB00A66C8F /* Noop.swift */,
-				D30232A3205978810003E48C /* Publish.swift */,
-				D3F119002059FE9E00F5B028 /* Retry.swift */,
-				D30DE33E205A218000A66C8F /* Sync.swift */,
-				D30232A920598A2E0003E48C /* Timeout.swift */,
-			);
-			path = Compose;
-			sourceTree = "<group>";
-		};
 		D3068D2A2058BD27000BD522 = {
 			isa = PBXGroup;
 			children = (
@@ -181,10 +135,17 @@
 		D3068D362058BD27000BD522 /* SwiftFP */ = {
 			isa = PBXGroup;
 			children = (
-				D30232A0205973AB0003E48C /* Compose */,
+				D3068D562058BDD5000BD522 /* Either.swift */,
+				D3068D4E2058BDD5000BD522 /* Optional.swift */,
+				D3068D522058BDD5000BD522 /* Optional+Try.swift */,
+				D3068D6B2058BE6B000BD522 /* Optional+Zip.swift */,
+				D3068D542058BDD5000BD522 /* Reader.swift */,
+				D3068D502058BDD5000BD522 /* State.swift */,
+				D3068D512058BDD5000BD522 /* Try.swift */,
+				D3068D552058BDD5000BD522 /* Try+Optional.swift */,
+				D3F70EAD20591E970039A97F /* Try+Zip.swift */,
 				D3068D6D2058C0E6000BD522 /* FPError.swift */,
 				D3068D382058BD27000BD522 /* Info.plist */,
-				D302329F2059738B0003E48C /* Model */,
 				D3068D372058BD27000BD522 /* SwiftFP.h */,
 			);
 			path = SwiftFP;
@@ -193,7 +154,6 @@
 		D3068D412058BD27000BD522 /* SwiftFPTests */ = {
 			isa = PBXGroup;
 			children = (
-				D30232A5205979970003E48C /* ComposableTest.swift */,
 				D3068D632058BDE1000BD522 /* EitherTest.swift */,
 				D3068D442058BD27000BD522 /* Info.plist */,
 				D3068D642058BDE1000BD522 /* OptionalTest.swift */,
@@ -408,19 +368,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3068D5D2058BDD5000BD522 /* Reader.swift in Sources */,
-				D30DE33D205A1DFB00A66C8F /* Noop.swift in Sources */,
-				D30232AA20598A2E0003E48C /* Timeout.swift in Sources */,
 				D3068D5B2058BDD5000BD522 /* Optional+Try.swift in Sources */,
 				D3068D6E2058C0E6000BD522 /* FPError.swift in Sources */,
-				D3F118FF2059FE8300F5B028 /* Catch.swift in Sources */,
-				D30232A4205978810003E48C /* Publish.swift in Sources */,
 				D3F70EAE20591E970039A97F /* Try+Zip.swift in Sources */,
-				D30DE33F205A218000A66C8F /* Sync.swift in Sources */,
-				D30232A2205973BF0003E48C /* Composable.swift in Sources */,
 				D3068D572058BDD5000BD522 /* Optional.swift in Sources */,
 				D3068D592058BDD5000BD522 /* State.swift in Sources */,
 				D3068D5E2058BDD5000BD522 /* Try+Optional.swift in Sources */,
-				D3F119012059FE9E00F5B028 /* Retry.swift in Sources */,
 				D3068D6C2058BE6B000BD522 /* Optional+Zip.swift in Sources */,
 				D3068D5F2058BDD5000BD522 /* Either.swift in Sources */,
 				D3068D5A2058BDD5000BD522 /* Try.swift in Sources */,
@@ -431,7 +384,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D30232A6205979970003E48C /* ComposableTest.swift in Sources */,
 				D3068D6A2058BDE1000BD522 /* ReaderTest.swift in Sources */,
 				D3068D662058BDE1000BD522 /* StateTest.swift in Sources */,
 				D3068D672058BDE1000BD522 /* TryTest.swift in Sources */,
@@ -589,7 +541,7 @@
 				INFOPLIST_FILE = SwiftFP/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.holmusk.SwiftFP;
+				PRODUCT_BUNDLE_IDENTIFIER = org.swiften.SwiftFP;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -615,7 +567,7 @@
 				INFOPLIST_FILE = SwiftFP/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.holmusk.SwiftFP;
+				PRODUCT_BUNDLE_IDENTIFIER = org.swiften.SwiftFP;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
