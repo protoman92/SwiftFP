@@ -13,7 +13,7 @@ public final class TryTest: XCTestCase {
     public func test_tryInit_shouldWork() {
         /// Setup
         let t1 = Try(1)
-        let t2 = Try<Int>(FPError.try("Error"))
+        let t2 = Try<Int>(FPError("Error"))
         
         /// When & Then
         XCTAssertEqual(t1.value, 1)
@@ -24,7 +24,7 @@ public final class TryTest: XCTestCase {
     
     public func test_tryMonad_shouldWork() {
         /// Setup
-        let t1 = Try<Int>({ throw FPError.try("Error1") })
+        let t1 = Try<Int>({ throw FPError("Error1") })
         let t2 = Try<Int>({1})
         
         // When & Then
@@ -32,14 +32,14 @@ public final class TryTest: XCTestCase {
         XCTAssertEqual(t1.flatMap({a in Try({a})}).value, nil)
         XCTAssertEqual(t2.map({Double($0 * 3)}).value, 3)
         XCTAssertEqual(t2.flatMap({a in Try({a})}).value, 1)
-        XCTAssertNotNil(t2.flatMap({(_) -> Try<Int> in throw FPError.any("")}).error)
+        XCTAssertNotNil(t2.flatMap({(_) -> Try<Int> in throw FPError("")}).error)
     }
     
     public func test_tryGetOrElse_shouldWork() {
         /// Setup
         let t1 = Try.success(1)
-        let t2 = Try<Int>.failure(FPError.try("Error 1"))
-        let t3 = Try<Int>.failure(FPError.try("Error 2"))
+        let t2 = Try<Int>.failure(FPError("Error 1"))
+        let t3 = Try<Int>.failure(FPError("Error 2"))
         
         /// When & Then
         XCTAssertEqual(t1.getOrElse(2), 1)
@@ -60,7 +60,7 @@ public final class TryTest: XCTestCase {
     
     public func test_tryToEither_shouldWork() {
         /// Setup
-        let t1 = Try<Int>({ throw FPError.try("Error1") })
+        let t1 = Try<Int>({ throw FPError("Error1") })
         let t2 = Try<Int>({1})
         let e1 = t1.asEither()
         let e2 = t2.asEither()
@@ -76,7 +76,7 @@ public final class TryTest: XCTestCase {
         /// Setup
         let t1 = Try(1)
         let t2 = Try.success("1")
-        let t3 = Try<String>.failure(FPError.try(nil))
+        let t3 = Try<String>.failure(FPError(nil))
         let t4 = Try.success(2.5)
         
         /// When
@@ -107,7 +107,7 @@ public final class TryTest: XCTestCase {
         /// Setup
         let try1 = Try.success(1)
         let try2 = Try.success(2)
-        let try3 = Try<Int>.failure(FPError.try("Error 3"))
+        let try3 = Try<Int>.failure("Error 3")
 
         /// Setup
         let try1f = try1.filter({$0 % 2 == 0}, "Not even!")

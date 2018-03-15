@@ -51,7 +51,7 @@ public extension TryType {
         } else if let error = self.error {
             throw error
         } else {
-            throw FPError.try("Invalid Try")
+            throw FPError("Invalid Try")
         }
     }
     
@@ -103,7 +103,7 @@ public extension TryType {
     ///   - error: A String value.
     /// - Returns: A Try instance.
     public func filter(_ selector: (Val) throws -> Bool, _ error: String) -> Try<Val> {
-        return filter(selector, FPError.try(error))
+        return filter(selector, FPError(error))
     }
     
     /// Functor.
@@ -139,49 +139,54 @@ public extension TryType {
     }
 }
 
-public enum Try<A> {
-    case success(A)
-    case failure(Error)
+/// Originally, this is implemented with an enum, but it becomes problematic
+/// when we pass Try instances around, esp. across threads (and even a struct
+/// based implementation has the same issue). Oddly enough, changing this to
+/// class works.
+///
+/// An example of this is synchronizing an async operation with Composable,
+/// coupled with retries. With a high enough number of retries, we encounter
+/// EXC_BAD_ACCESS w.r.t the stored error.
+///
+/// Another example (although no EXC_BAD_ACCESS, it still has weird leaks), is
+/// HMRequestFramework's FRC wrapper.
+public final class Try<A> {
+    public static func success(_ value: A) -> Try<A> {
+        return Try(value)
+    }
     
-    public init(_ f: () throws -> A) {
+    public static func failure(_ error: Error) -> Try<A> {
+        return Try(error)
+    }
+    
+    public static func failure(_ error: String) -> Try<A> {
+        return failure(FPError(error))
+    }
+    
+    public let value: A?
+    public let error: Error?
+    
+    convenience public init(_ f: () throws -> A) {
         do {
-            self = .success(try f())
-        } catch let error {
-            self = .failure(error)
+            self.init(try f())
+        } catch let e {
+            self.init(e)
         }
     }
     
     public init(_ value: A) {
-        self = .success(value)
+        self.value = value
+        self.error = nil
     }
     
     public init(_ error: Error) {
-        self = .failure(error)
+        self.error = error
+        self.value = nil
     }
 }
 
 extension Try: TryType {
     public func asTry() -> Try<A> {
         return self
-    }
-    
-    public var value: A? {
-        switch self {
-        case .success(let value):
-            return value
-            
-        default:
-            return nil
-        }
-    }
-    
-    public var error: Error? {
-        switch self {
-        case .failure(let error):
-            return error
-            
-        default:
-            return nil
-        }
     }
 }

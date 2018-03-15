@@ -45,8 +45,8 @@ public final class ReaderTest: XCTestCase {
     
     public func test_readerZipIgnoringErrors_shouldWork() {
         //// Setup
-        let r1 = Reader<Int, Int>({_ in throw FPError.any("Error1") })
-        let r2 = Reader<Int, Int>({_ in throw FPError.any("Error2") })
+        let r1 = Reader<Int, Int>({_ in throw FPError("Error1") })
+        let r2 = Reader<Int, Int>({_ in throw FPError("Error2") })
         let r3 = Reader<Int, Int>({$0})
         let r4 = Reader<Int, Int>({$0 * 2})
         let z1 = Reader<Int, Int>.zip([r1, r2, r3, r4], {$0.reduce(0, +)})

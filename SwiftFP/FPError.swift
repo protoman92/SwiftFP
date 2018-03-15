@@ -7,26 +7,11 @@
 //
 
 // Utility errors for FP data structures.
-public enum FPError {
-    case any(String?)
-    case optional(String?)
-    case `try`(String?)
-    case timeout(TimeInterval)
+public struct FPError {
+    private let message: String?
     
-    public var message: String? {
-        switch self {
-        case .any(let msg):
-            return msg
-            
-        case .optional(let msg):
-            return msg
-            
-        case .`try`(let msg):
-            return msg
-            
-        case .timeout(let duration):
-            return "Timed out after \(duration)s"
-        }
+    public init(_ message: String?) {
+        self.message = message
     }
 }
 

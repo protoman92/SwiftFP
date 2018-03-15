@@ -35,11 +35,11 @@ public struct Composable<T> {
     /// - Parameter sf: A SupplierF instance.
     /// - Returns: A Composable instance.
     public func compose(_ sf: @escaping SupplierF<T>) -> Composable<T> {
-        let newFF: SupplierF<T> = {(s: @escaping Supplier<T>) -> Supplier<T> in
+        let newSf: SupplierF<T> = {(s: @escaping Supplier<T>) -> Supplier<T> in
             return try self.invoke(sf(s))
         }
         
-        return Composable(newFF)
+        return Composable(newSf)
     }
 
     /// Compose with another Composable to enhance functionalities.

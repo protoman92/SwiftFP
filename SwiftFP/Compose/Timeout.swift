@@ -10,12 +10,12 @@ public extension Composable {
     
     /// Times out an operation with a timeout error. For the second curried
     /// parameter, provide the DispatchQueue to run the operation on. The
-    /// result will be received on the calling thread, so it is important that
-    /// the dispatch queue used to perform the operation does not coincide with
-    /// the one that schedules this function.
+    /// result will be received on the calling thread, so beware which queue
+    /// is passed in, because using the wrong dispatch queue may block forever.
     ///
-    /// This is a very crude implementation. A better, more robust one may use
-    /// a sync queue to check which event comes first.
+    /// For example, it will block if both the calling queue and the perform
+    /// queue are main. If both are backgrounds, or one main one background, it
+    /// should be fine.
     ///
     /// - Parameter duration: A TimeInterval value.
     /// - Returns: A Composable instance.
@@ -23,7 +23,6 @@ public extension Composable {
         return {(dq: DispatchQueue) -> Composable<T> in
             let sf: SupplierF<T> = {(s: @escaping Supplier<T>) -> Supplier<T> in
                 return {
-                    dispatchPrecondition(condition: .notOnQueue(dq))
                     let mutex = NSLock()
                     var resultF: Supplier<T>?
                     var timedout = false
@@ -58,7 +57,7 @@ public extension Composable {
                     if let resultF = resultF {
                         return try resultF()
                     } else {
-                        throw FPError.timeout(duration)
+                        throw FPError("Timed out after \(duration)")
                     }
                 }
             }

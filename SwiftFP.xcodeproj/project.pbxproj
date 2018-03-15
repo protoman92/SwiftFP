@@ -29,6 +29,8 @@
 		D3068D6C2058BE6B000BD522 /* Optional+Zip.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3068D6B2058BE6B000BD522 /* Optional+Zip.swift */; };
 		D3068D6E2058C0E6000BD522 /* FPError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3068D6D2058C0E6000BD522 /* FPError.swift */; };
 		D30DE336205A11CC00A66C8F /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D30DE335205A11CC00A66C8F /* README.md */; };
+		D30DE33D205A1DFB00A66C8F /* Noop.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30DE33C205A1DFB00A66C8F /* Noop.swift */; };
+		D30DE33F205A218000A66C8F /* Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30DE33E205A218000A66C8F /* Sync.swift */; };
 		D3F118FF2059FE8300F5B028 /* Catch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F118FE2059FE8300F5B028 /* Catch.swift */; };
 		D3F119012059FE9E00F5B028 /* Retry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F119002059FE9E00F5B028 /* Retry.swift */; };
 		D3F70EAE20591E970039A97F /* Try+Zip.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F70EAD20591E970039A97F /* Try+Zip.swift */; };
@@ -75,6 +77,8 @@
 		D3068D6B2058BE6B000BD522 /* Optional+Zip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Zip.swift"; sourceTree = "<group>"; };
 		D3068D6D2058C0E6000BD522 /* FPError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FPError.swift; sourceTree = "<group>"; };
 		D30DE335205A11CC00A66C8F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		D30DE33C205A1DFB00A66C8F /* Noop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Noop.swift; sourceTree = "<group>"; };
+		D30DE33E205A218000A66C8F /* Sync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sync.swift; sourceTree = "<group>"; };
 		D3F118FE2059FE8300F5B028 /* Catch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Catch.swift; sourceTree = "<group>"; };
 		D3F119002059FE9E00F5B028 /* Retry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Retry.swift; sourceTree = "<group>"; };
 		D3F70EAD20591E970039A97F /* Try+Zip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Try+Zip.swift"; sourceTree = "<group>"; };
@@ -144,8 +148,10 @@
 			children = (
 				D3F118FE2059FE8300F5B028 /* Catch.swift */,
 				D30232A1205973BF0003E48C /* Composable.swift */,
+				D30DE33C205A1DFB00A66C8F /* Noop.swift */,
 				D30232A3205978810003E48C /* Publish.swift */,
 				D3F119002059FE9E00F5B028 /* Retry.swift */,
+				D30DE33E205A218000A66C8F /* Sync.swift */,
 				D30232A920598A2E0003E48C /* Timeout.swift */,
 			);
 			path = Compose;
@@ -175,10 +181,10 @@
 		D3068D362058BD27000BD522 /* SwiftFP */ = {
 			isa = PBXGroup;
 			children = (
-				D3068D6D2058C0E6000BD522 /* FPError.swift */,
 				D30232A0205973AB0003E48C /* Compose */,
-				D302329F2059738B0003E48C /* Model */,
+				D3068D6D2058C0E6000BD522 /* FPError.swift */,
 				D3068D382058BD27000BD522 /* Info.plist */,
+				D302329F2059738B0003E48C /* Model */,
 				D3068D372058BD27000BD522 /* SwiftFP.h */,
 			);
 			path = SwiftFP;
@@ -402,12 +408,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3068D5D2058BDD5000BD522 /* Reader.swift in Sources */,
+				D30DE33D205A1DFB00A66C8F /* Noop.swift in Sources */,
 				D30232AA20598A2E0003E48C /* Timeout.swift in Sources */,
 				D3068D5B2058BDD5000BD522 /* Optional+Try.swift in Sources */,
 				D3068D6E2058C0E6000BD522 /* FPError.swift in Sources */,
 				D3F118FF2059FE8300F5B028 /* Catch.swift in Sources */,
 				D30232A4205978810003E48C /* Publish.swift in Sources */,
 				D3F70EAE20591E970039A97F /* Try+Zip.swift in Sources */,
+				D30DE33F205A218000A66C8F /* Sync.swift in Sources */,
 				D30232A2205973BF0003E48C /* Composable.swift in Sources */,
 				D3068D572058BDD5000BD522 /* Optional.swift in Sources */,
 				D3068D592058BDD5000BD522 /* State.swift in Sources */,

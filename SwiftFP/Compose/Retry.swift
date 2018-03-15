@@ -15,22 +15,25 @@ public extension Composable {
     /// - Parameter times: The number of times to retry.
     /// - Returns: A custom higher order function.
     public static func retryWithCount(_ times: Int) -> (@escaping (Int) throws -> T) -> Supplier<T> {
+        assert(times >= 0, "Expected retry to be more than 0, but got \(times)")
+        
         return {(s: @escaping (Int) throws -> T) -> Supplier<T> in
-            var retryF: ((Int) throws -> T)!
-            
-            retryF = {
-                do {
-                    return try s($0)
-                } catch let e {
-                    if $0 < times {
-                        return try retryF($0 + 1)
-                    } else {
-                        throw e
-                    }
-                }
+            return {try retryF(times, 0, s)}
+        }
+    }
+    
+    /// Convenience function for retryWithCount.
+    private static func retryF(_ times: Int,
+                               _ current: Int,
+                               _ s: (@escaping (Int) throws -> T)) throws -> T {
+        do {
+            return try s(current)
+        } catch let e {
+            if current < times {
+                return try retryF(times, current + 1, s)
+            } else {
+                throw e
             }
-            
-            return {try retryF(0)}
         }
     }
     

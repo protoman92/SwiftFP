@@ -51,7 +51,7 @@ public extension Try {
     ///   - error: The error to be thrown when there is no value.
     /// - Returns: A Try instance.
     public static func from<Val>(optional: Optional<Val>, error: String) -> Try<Val> {
-        return Try.from(optional: optional, error: FPError.try(error))
+        return Try.from(optional: optional, error: FPError(error))
     }
     
     /// Produce a Try from an Optional, and throw a default Error if the value is

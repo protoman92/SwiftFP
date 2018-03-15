@@ -18,10 +18,10 @@ public final class OptionalTest: XCTestCase {
         /// When & Then
         XCTAssertEqual(o1.getOrElse(2), 1)
         XCTAssertEqual(o2.getOrElse(1), 1)
-        XCTAssertEqual(try! o1.getOrThrow(error: "Error"), 1)
+        XCTAssertEqual(try! o1.getOrThrow("Error"), 1)
         
         do {
-            _ = try o2.getOrThrow(error: "Error1")
+            _ = try o2.getOrThrow("Error1")
             XCTFail("Should not complete")
         } catch let e {
             XCTAssertEqual(e.localizedDescription, "Error1")
@@ -31,7 +31,7 @@ public final class OptionalTest: XCTestCase {
     public func test_someOrElse_shouldWork() {
         /// Setup
         let o1 = Optional.some(1)
-        let o2 = Try<Int>.failure(FPError.any(nil))
+        let o2 = Try<Int>.failure(FPError(nil))
         let o3 = Optional.some(2)
         
         /// When & Then
@@ -57,7 +57,7 @@ public final class OptionalTest: XCTestCase {
         let o2 = Optional<Int>.none
         
         /// When
-        let t1 = o1.asTry(error: FPError.optional(error))
+        let t1 = o1.asTry(error: FPError(error))
         let t2 = o2.asTry(error: error)
         
         /// Then
@@ -67,7 +67,7 @@ public final class OptionalTest: XCTestCase {
     
     public func test_zipOptional_shouldWork() {
         /// Setup
-        let o1 = Try<Int>.failure(FPError.any(nil))
+        let o1 = Try<Int>.failure(FPError(nil))
         let o2 = Optional.some(1)
         let o3 = Optional.some(2)
         let o4 = Optional.some(3)
@@ -77,7 +77,7 @@ public final class OptionalTest: XCTestCase {
         let optional15 = Optional<Int>.zip({$0.reduce(0, +)}, o1, o5)
         let optional23 = o2.zipWith(o3, +)
         let optional234 = Optional<Int>.zip({$0.reduce(0, +)}, o2, o3, o4)
-        let optional234E = Optional<Int>.zip([o2, o3, o4], {_ -> Int in throw FPError.any(nil)})
+        let optional234E = Optional<Int>.zip([o2, o3, o4], {_ -> Int in throw FPError(nil)})
         let optional234V = Optional<Int>.zip({$0.reduce(0, +)}, o2, o3, o4)
         
         /// Then

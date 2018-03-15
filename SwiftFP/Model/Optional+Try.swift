@@ -29,6 +29,6 @@ extension Optional: TryConvertibleType {
     /// - Parameter error: A String value.
     /// - Returns: A Try instance.
     public func asTry(error: String) -> Try<Val> {
-        return asTry(error: FPError.optional(error))
+        return asTry(error: FPError(error))
     }
 }

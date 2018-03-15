@@ -88,7 +88,7 @@ extension Optional: OptionalType {
     /// - Parameter error: An Error instance.
     /// - Returns: The Wrapped value.
     /// - Throws: Error if the value is not available.
-    public func getOrThrow(error: Error) throws -> Wrapped {
+    public func getOrThrow(_ error: Error) throws -> Wrapped {
         switch self {
         case .some(let a): return a
         case .none: throw error
@@ -100,8 +100,8 @@ extension Optional: OptionalType {
     /// - Parameter error: A String value.
     /// - Returns: The Wrapped value.
     /// - Throws: Error if the value is not available.
-    public func getOrThrow(error: String) throws -> Wrapped {
-        return try getOrThrow(error: FPError.optional(error))
+    public func getOrThrow(_ error: String) throws -> Wrapped {
+        return try getOrThrow(FPError(error))
     }
     
     /// Filter the inner value using a selector and return nothing if it does

@@ -10,6 +10,13 @@ import XCTest
 @testable import SwiftFP
 
 public final class ComposableTest: XCTestCase {
+    private var expectTimeout: TimeInterval!
+    
+    override public func setUp() {
+        super.setUp()
+        expectTimeout = 100
+    }
+    
     public func test_composePublish_shouldWork() {
         /// Setup
         var published = 0
@@ -37,12 +44,12 @@ public final class ComposableTest: XCTestCase {
         /// Setup
         var actualError: Error?
         var actualTryCount = 0
-        let retryCount = 0
+        let retryCount = 10000
         let error = "Error!"
         
         let fInt: Supplier<Int> = {
             actualTryCount += 1
-            throw FPError.any(error)
+            throw FPError(error)
         }
         
         let retryF = Composable<Int>.retry(retryCount)
@@ -69,7 +76,7 @@ public final class ComposableTest: XCTestCase {
         
         let fInt: Supplier<Int> = {
             actualTryCount += 1
-            throw FPError.any(error)
+            throw FPError(error)
         }
         
         let retryF = Composable<Int>.retryWithDelay(retryCount)(duration)
@@ -136,7 +143,7 @@ public final class ComposableTest: XCTestCase {
         /// Setup
         var actualError: Error?
         var actualResult: Int?
-        let fInt: Supplier<Int> = {throw FPError.any("")}
+        let fInt: Supplier<Int> = {throw FPError("")}
         
         /// When
         do {
@@ -172,7 +179,7 @@ public final class ComposableTest: XCTestCase {
         /// Setup
         var actualError: Error?
         var actualResult: Int?
-        let fInt: Supplier<Int> = {throw FPError.any("")}
+        let fInt: Supplier<Int> = {throw FPError("")}
         
         /// When
         do {
@@ -187,6 +194,64 @@ public final class ComposableTest: XCTestCase {
         XCTAssertNil(actualResult)
     }
     
+    public func test_composeAsyncToSync_shouldWork() {
+        /// Setup
+        var actualResult: Int?
+        let sleepTime: TimeInterval = 1
+        
+        let asyncOp: AsyncOperation<Int> = {(callback: @escaping AsyncCallback<Int>) in
+            DispatchQueue.global(qos: .background).async {
+                Thread.sleep(forTimeInterval: sleepTime)
+                callback(Try.success(3))
+            }
+        }
+        
+        let composed = Composable.sync(asyncOp)
+        let expect = expectation(description: "Should have completed")
+        
+        /// When
+        DispatchQueue.global(qos: .background).async {
+            actualResult = try? composed()
+            expect.fulfill()
+        }
+        
+        waitForExpectations(timeout: expectTimeout!, handler: nil)
+        
+        /// Then
+        XCTAssertEqual(actualResult, 3)
+    }
+    
+    public func test_composeAsyncWithOtherComposable_shouldWork() {
+        /// Setup
+        var actualResult: String?
+        var actualError: Error?
+        var publishCount = 0
+        let retryCount = 50
+        let error = "Error"
+        let sleepTime: TimeInterval = 0.1
+        
+        let asyncOp: AsyncOperation<String> = {(callback: @escaping AsyncCallback<String>) in
+            DispatchQueue.global(qos: .utility).async {
+                Thread.sleep(forTimeInterval: sleepTime)
+                callback(Try.failure(FPError(error)))
+            }
+        }
+        
+        /// When
+        do {
+            actualResult = try Composable<String>.retry(retryCount)
+                .compose(Composable.publishError({_ in publishCount += 1}))
+                .invoke(Composable.sync(asyncOp))()
+        } catch let e {
+            actualError = e
+        }
+        
+        /// Then
+        XCTAssertNil(actualResult)
+        XCTAssertEqual(actualError?.localizedDescription, error)
+        XCTAssertEqual(publishCount, retryCount + 1)
+    }
+    
     public func test_multipleComposition_shouldWork() {
         /// Setup
         var actualError: Error?
@@ -195,7 +260,7 @@ public final class ComposableTest: XCTestCase {
         let error = "Error"
         let retryCount = 10
         let dispatchQueue = DispatchQueue.global(qos: .background)
-        let fInt: Supplier<Int> = {throw FPError.any(error)}
+        let fInt: Supplier<Int> = {throw FPError(error)}
         let publishF: (Error) -> Void = {_ in publishCount += 1}
         
         let reset: () -> Void = {
@@ -251,5 +316,51 @@ public final class ComposableTest: XCTestCase {
         XCTAssertNil(actualError)
         XCTAssertEqual(actualResult, 1)
         XCTAssertEqual(publishCount, 0)
+    }
+}
+
+public extension ComposableTest {
+    public func test_composeInDifferentDispatchQueue_shouldWork() {
+        /// Setup
+        var actualError: Error?
+        var actualResult: Int?
+        let error = "Error"
+        let retryCount = 10
+        let timeout: TimeInterval = 1
+        
+        let fInt: Supplier<Int> = {
+            Thread.sleep(forTimeInterval: timeout * 2)
+            throw FPError(error)
+        }
+        
+        let callingDq = DispatchQueue.global(qos: .background)
+        let performDq = DispatchQueue.global(qos: .background)
+        
+        let composed = Composable<Int>.timeout(timeout)(performDq)
+            .compose(Composable.retry(retryCount))
+            .compose(Composable.noop())
+        
+        let expect = expectation(description: "Should have completed")
+        
+        /// When
+        let start = Date()
+        
+        callingDq.async {
+            do {
+                actualResult = try composed.invoke(fInt)()
+            } catch let e {
+                actualError = e
+            }
+            
+            expect.fulfill()
+        }
+        
+        let difference = Date().timeIntervalSince(start)
+        waitForExpectations(timeout: expectTimeout!, handler: nil)
+        
+        /// Then
+        XCTAssertTrue(actualError is FPError)
+        XCTAssertNil(actualResult)
+        XCTAssertLessThan(difference, 0.1)
     }
 }
