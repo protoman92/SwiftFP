@@ -24,4 +24,12 @@ public extension Composable {
         
         return Composable(ff)
     }
+    
+    /// This is similar to catch, but returns a value when an error occurs.
+    ///
+    /// - Parameter v: A T instance.
+    /// - Returns: A Composable instance.
+    public static func catchReturn(_ v: T) -> Composable<T> {
+        return `catch`({_ in v})
+    }
 }

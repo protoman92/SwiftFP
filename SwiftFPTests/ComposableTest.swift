@@ -150,6 +150,24 @@ public final class ComposableTest: XCTestCase {
         XCTAssertEqual(actualResult, 1)
     }
     
+    public func test_composableCatchWithoutError_shouldWork() {
+        /// Setup
+        var actualError: Error?
+        var actualResult: Int?
+        let fInt: Function<Int> = {1}
+        
+        /// When
+        do {
+            actualResult = try Composable.catchReturn(100).invoke(fInt)()
+        } catch let e {
+            actualError = e
+        }
+        
+        /// Then
+        XCTAssertNil(actualError)
+        XCTAssertEqual(actualResult, 1)
+    }
+    
     public func test_composeCatchThrows_shouldWork() {
         /// Setup
         var actualError: Error?
@@ -224,7 +242,7 @@ public final class ComposableTest: XCTestCase {
                 .compose(Composable.retry(100000))
                 .compose(Composable.publishError(publishF))
                 .compose(Composable.timeout(2)(dispatchQueue))
-                .compose(Composable.catch({_ in 1})) // Nullify all above.
+                .compose(Composable.catchReturn(1)) // Nullify all above.
                 .invoke(fInt)()
         } catch let e {
             actualError = e
