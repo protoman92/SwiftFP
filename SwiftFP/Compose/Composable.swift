@@ -30,6 +30,37 @@ public struct Composable<T> {
         return try sf(s)
     }
     
+    /// Invoke the inner Supplier asynchronously with a provided DispatchQueue
+    /// and callbacks.
+    ///
+    /// - Parameter onNext: A T callback function.
+    /// - Throws: If the operation fails.
+    public func invokeAsync(_ onNext: @escaping (T) throws -> Void)
+        -> (@escaping (Error) -> Void)
+        -> (@escaping () throws -> Void)
+        -> (DispatchQueue)
+        -> (@escaping Supplier<T>)
+        -> Void
+    {
+        return {(onError: @escaping (Error) -> Void) in
+            return {(onComplete: @escaping () throws -> Void) in
+                return {(dq: DispatchQueue) in
+                    return {(s: @escaping Supplier<T>) in
+                        dq.async {
+                            do {
+                                let value = try self.invoke(s)()
+                                try onNext(value)
+                                try onComplete()
+                            } catch let e {
+                                onError(e)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     /// Compose with another SupplierF to enhance functionalities.
     ///
     /// - Parameter sf: A SupplierF instance.

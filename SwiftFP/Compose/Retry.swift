@@ -18,21 +18,20 @@ public extension Composable {
         assert(times >= 0, "Expected retry to be more than 0, but got \(times)")
         
         return {(s: @escaping (Int) throws -> T) -> Supplier<T> in
-            return {try retryF(times, 0, s)}
-        }
-    }
-    
-    /// Convenience function for retryWithCount.
-    private static func retryF(_ times: Int,
-                               _ current: Int,
-                               _ s: (@escaping (Int) throws -> T)) throws -> T {
-        do {
-            return try s(current)
-        } catch let e {
-            if current < times {
-                return try retryF(times, current + 1, s)
-            } else {
-                throw e
+            return {
+                var current = 0
+                
+                while true {
+                    do {
+                        return try s(current)
+                    } catch let e {
+                        if current == times {
+                            throw e
+                        }
+                    }
+                    
+                    current += 1
+                }
             }
         }
     }
