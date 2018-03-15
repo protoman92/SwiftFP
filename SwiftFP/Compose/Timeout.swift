@@ -40,10 +40,6 @@ public extension Composable {
                         resultF = $0
                     }
                     
-                    dq.asyncAfter(deadline: DispatchTime.now() + duration, execute: {
-                        setTimedOut(true)
-                    })
-                    
                     dq.async {
                         do {
                             let value = try f()
@@ -52,6 +48,10 @@ public extension Composable {
                             setResult({throw e})
                         }
                     }
+                    
+                    dq.asyncAfter(deadline: DispatchTime.now() + duration, execute: {
+                        setTimedOut(true)
+                    })
                     
                     while !timedout && resultF == nil {}
                     

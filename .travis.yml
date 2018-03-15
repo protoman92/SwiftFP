@@ -4,11 +4,11 @@ xcode_workspace: SwiftFP.xcworkspace
 xcode_scheme: SwiftFP
 xcode_sdk: iphonesimulator11.2
 before_install:
-- gem install cocoapods slather
+- gem install cocoapods slather xcpretty
 - pod repo update
 
 script:
-- set -o pipefail && xcodebuild clean test -sdk iphonesimulator -workspace SwiftFP.xcworkspace -scheme SwiftFP -destination 'platform=iOS Simulator,name=iPhone 7' CODE_SIGNING_REQUIRED=NO
+- set -o pipefail && xcodebuild clean test -sdk iphonesimulator -workspace SwiftFP.xcworkspace -scheme SwiftFP -destination 'platform=iOS Simulator,name=iPhone 7' CODE_SIGNING_REQUIRED=NO GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty
 - pod lib lint --quick
 
 after_success: slather

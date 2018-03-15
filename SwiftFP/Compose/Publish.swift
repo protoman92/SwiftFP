@@ -23,4 +23,24 @@ public extension Composable {
         
         return Composable(ff)
     }
+    
+    /// publishError is similar to publish, but it only publishes if an error
+    /// is encountered.
+    ///
+    /// - Parameter p: An error callback function.
+    /// - Returns: A Composable instance.
+    public static func publishError(_ p: @escaping (Error) throws -> Void) -> Composable<T> {
+        let ff: FunctionF<T> = {(f: @escaping Function<T>) -> Function<T> in
+            return {
+                do {
+                    return try f()
+                } catch let e {
+                    try p(e)
+                    throw e
+                }
+            }
+        }
+        
+        return Composable(ff)
+    }
 }

@@ -1,13 +1,12 @@
 //
-//  Error.swift
+//  Retry.swift
 //  SwiftFP
 //
-//  Created by Hai Pham on 14/3/18.
+//  Created by Hai Pham on 15/3/18.
 //  Copyright © 2018 Hai Pham. All rights reserved.
 //
 
 public extension Composable {
-    
     /// Retry wraps an error-returning function with retry capabilities. It
     /// also keeps track of the current retry count, which may be useful if we
     /// want to define a custom retry delay function.
@@ -67,43 +66,5 @@ public extension Composable {
             
             return Composable(ff)
         }
-    }
-    
-    /// publishError is similar to publish, but it only publishes if an error
-    /// is encountered.
-    ///
-    /// - Parameter p: An error callback function.
-    /// - Returns: A Composable instance.
-    public static func publishError(_ p: @escaping (Error) throws -> Void) -> Composable<T> {
-        let ff: FunctionF<T> = {(f: @escaping Function<T>) -> Function<T> in
-            return {
-                do {
-                    return try f()
-                } catch let e {
-                    try p(e)
-                    throw e
-                }
-            }
-        }
-        
-        return Composable(ff)
-    }
-
-    /// Catch the error and supply a different value.
-    ///
-    /// - Parameter c: A Error transform function.
-    /// - Returns: A Composable instance.
-    public static func `catch`(_ c: @escaping (Error) throws -> T) -> Composable<T> {
-        let ff: FunctionF<T> = {(f: @escaping Function<T>) -> Function<T> in
-            return {
-                do {
-                    return try f()
-                } catch let e {
-                    return try c(e)
-                }
-            }
-        }
-        
-        return Composable(ff)
     }
 }

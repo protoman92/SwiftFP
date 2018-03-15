@@ -11,7 +11,6 @@
 		D30232A2205973BF0003E48C /* Composable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30232A1205973BF0003E48C /* Composable.swift */; };
 		D30232A4205978810003E48C /* Publish.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30232A3205978810003E48C /* Publish.swift */; };
 		D30232A6205979970003E48C /* ComposableTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30232A5205979970003E48C /* ComposableTest.swift */; };
-		D30232A820597A880003E48C /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30232A720597A880003E48C /* Error.swift */; };
 		D30232AA20598A2E0003E48C /* Timeout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30232A920598A2E0003E48C /* Timeout.swift */; };
 		D3068D3E2058BD27000BD522 /* SwiftFP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3068D342058BD27000BD522 /* SwiftFP.framework */; };
 		D3068D452058BD27000BD522 /* SwiftFP.h in Headers */ = {isa = PBXBuildFile; fileRef = D3068D372058BD27000BD522 /* SwiftFP.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -29,6 +28,8 @@
 		D3068D6A2058BDE1000BD522 /* ReaderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3068D652058BDE1000BD522 /* ReaderTest.swift */; };
 		D3068D6C2058BE6B000BD522 /* Optional+Zip.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3068D6B2058BE6B000BD522 /* Optional+Zip.swift */; };
 		D3068D6E2058C0E6000BD522 /* FPError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3068D6D2058C0E6000BD522 /* FPError.swift */; };
+		D3F118FF2059FE8300F5B028 /* Catch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F118FE2059FE8300F5B028 /* Catch.swift */; };
+		D3F119012059FE9E00F5B028 /* Retry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F119002059FE9E00F5B028 /* Retry.swift */; };
 		D3F70EAE20591E970039A97F /* Try+Zip.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F70EAD20591E970039A97F /* Try+Zip.swift */; };
 		FA98F433CD29E8A1C6F3A260 /* Pods_SwiftFPTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74E827F78B340C57BF7EC0DA /* Pods_SwiftFPTests.framework */; };
 /* End PBXBuildFile section */
@@ -51,7 +52,6 @@
 		D30232A1205973BF0003E48C /* Composable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Composable.swift; sourceTree = "<group>"; };
 		D30232A3205978810003E48C /* Publish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Publish.swift; sourceTree = "<group>"; };
 		D30232A5205979970003E48C /* ComposableTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposableTest.swift; sourceTree = "<group>"; };
-		D30232A720597A880003E48C /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		D30232A920598A2E0003E48C /* Timeout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timeout.swift; sourceTree = "<group>"; };
 		D3068D342058BD27000BD522 /* SwiftFP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftFP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3068D372058BD27000BD522 /* SwiftFP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftFP.h; sourceTree = "<group>"; };
@@ -73,6 +73,8 @@
 		D3068D652058BDE1000BD522 /* ReaderTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReaderTest.swift; sourceTree = "<group>"; };
 		D3068D6B2058BE6B000BD522 /* Optional+Zip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Zip.swift"; sourceTree = "<group>"; };
 		D3068D6D2058C0E6000BD522 /* FPError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FPError.swift; sourceTree = "<group>"; };
+		D3F118FE2059FE8300F5B028 /* Catch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Catch.swift; sourceTree = "<group>"; };
+		D3F119002059FE9E00F5B028 /* Retry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Retry.swift; sourceTree = "<group>"; };
 		D3F70EAD20591E970039A97F /* Try+Zip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Try+Zip.swift"; sourceTree = "<group>"; };
 		D430AC7981A484008019F5D1 /* Pods-SwiftFP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftFP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftFP/Pods-SwiftFP.debug.xcconfig"; sourceTree = "<group>"; };
 		FE404559083ED7A0154F7D6C /* Pods_SwiftFP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftFP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,9 +140,10 @@
 		D30232A0205973AB0003E48C /* Compose */ = {
 			isa = PBXGroup;
 			children = (
+				D3F118FE2059FE8300F5B028 /* Catch.swift */,
 				D30232A1205973BF0003E48C /* Composable.swift */,
 				D30232A3205978810003E48C /* Publish.swift */,
-				D30232A720597A880003E48C /* Error.swift */,
+				D3F119002059FE9E00F5B028 /* Retry.swift */,
 				D30232A920598A2E0003E48C /* Timeout.swift */,
 			);
 			path = Compose;
@@ -181,6 +184,7 @@
 		D3068D412058BD27000BD522 /* SwiftFPTests */ = {
 			isa = PBXGroup;
 			children = (
+				D30232A5205979970003E48C /* ComposableTest.swift */,
 				D3068D632058BDE1000BD522 /* EitherTest.swift */,
 				D3068D442058BD27000BD522 /* Info.plist */,
 				D3068D642058BDE1000BD522 /* OptionalTest.swift */,
@@ -188,7 +192,6 @@
 				D3068D612058BDE1000BD522 /* StateTest.swift */,
 				D3068D602058BDE0000BD522 /* SwiftFPTests-Bridging-Header.h */,
 				D3068D622058BDE1000BD522 /* TryTest.swift */,
-				D30232A5205979970003E48C /* ComposableTest.swift */,
 			);
 			path = SwiftFPTests;
 			sourceTree = "<group>";
@@ -398,13 +401,14 @@
 				D30232AA20598A2E0003E48C /* Timeout.swift in Sources */,
 				D3068D5B2058BDD5000BD522 /* Optional+Try.swift in Sources */,
 				D3068D6E2058C0E6000BD522 /* FPError.swift in Sources */,
-				D30232A820597A880003E48C /* Error.swift in Sources */,
+				D3F118FF2059FE8300F5B028 /* Catch.swift in Sources */,
 				D30232A4205978810003E48C /* Publish.swift in Sources */,
 				D3F70EAE20591E970039A97F /* Try+Zip.swift in Sources */,
 				D30232A2205973BF0003E48C /* Composable.swift in Sources */,
 				D3068D572058BDD5000BD522 /* Optional.swift in Sources */,
 				D3068D592058BDD5000BD522 /* State.swift in Sources */,
 				D3068D5E2058BDD5000BD522 /* Try+Optional.swift in Sources */,
+				D3F119012059FE9E00F5B028 /* Retry.swift in Sources */,
 				D3068D6C2058BE6B000BD522 /* Optional+Zip.swift in Sources */,
 				D3068D5F2058BDD5000BD522 /* Either.swift in Sources */,
 				D3068D5A2058BDD5000BD522 /* Try.swift in Sources */,
@@ -472,6 +476,8 @@
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -531,6 +537,8 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -560,6 +568,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
 				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				INFOPLIST_FILE = SwiftFP/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -585,6 +594,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
 				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				INFOPLIST_FILE = SwiftFP/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -605,6 +615,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5FF785XRZ6;
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				INFOPLIST_FILE = SwiftFPTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.holmusk.SwiftFPTests;
@@ -624,6 +636,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5FF785XRZ6;
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				INFOPLIST_FILE = SwiftFPTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.holmusk.SwiftFPTests;
