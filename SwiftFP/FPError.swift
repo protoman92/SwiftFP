@@ -8,7 +8,7 @@
 
 // Utility errors for FP data structures.
 public struct FPError {
-    private let message: String?
+    fileprivate let message: String?
     
     public init(_ message: String?) {
         self.message = message

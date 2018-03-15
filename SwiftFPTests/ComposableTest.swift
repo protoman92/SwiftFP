@@ -10,7 +10,7 @@ import XCTest
 @testable import SwiftFP
 
 public final class ComposableTest: XCTestCase {
-    private var expectTimeout: TimeInterval!
+    fileprivate var expectTimeout: TimeInterval!
     
     override public func setUp() {
         super.setUp()
