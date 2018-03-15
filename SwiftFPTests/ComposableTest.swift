@@ -15,7 +15,7 @@ public final class ComposableTest: XCTestCase {
         var published = 0
         var publishedValue = 0
         let value = 1
-        let fInt: Function<Int> = {value}
+        let fInt: Supplier<Int> = {value}
         
         let publishF: (Int) -> Void = {
             published += 1
@@ -40,7 +40,7 @@ public final class ComposableTest: XCTestCase {
         let retryCount = 0
         let error = "Error!"
         
-        let fInt: Function<Int> = {
+        let fInt: Supplier<Int> = {
             actualTryCount += 1
             throw FPError.any(error)
         }
@@ -67,7 +67,7 @@ public final class ComposableTest: XCTestCase {
         let duration: TimeInterval = 0.2
         let error = "Error!"
         
-        let fInt: Function<Int> = {
+        let fInt: Supplier<Int> = {
             actualTryCount += 1
             throw FPError.any(error)
         }
@@ -100,12 +100,12 @@ public final class ComposableTest: XCTestCase {
         let timeout: TimeInterval = 1
         let dispatchQueue = DispatchQueue.global(qos: .background)
         
-        let fInt1: Function<Int> = {
+        let fInt1: Supplier<Int> = {
             Thread.sleep(forTimeInterval: timeout * 2)
             return 1
         }
         
-        let fInt2: Function<Int> = {
+        let fInt2: Supplier<Int> = {
             Thread.sleep(forTimeInterval: timeout / 2)
             return 2
         }
@@ -136,7 +136,7 @@ public final class ComposableTest: XCTestCase {
         /// Setup
         var actualError: Error?
         var actualResult: Int?
-        let fInt: Function<Int> = {throw FPError.any("")}
+        let fInt: Supplier<Int> = {throw FPError.any("")}
         
         /// When
         do {
@@ -154,7 +154,7 @@ public final class ComposableTest: XCTestCase {
         /// Setup
         var actualError: Error?
         var actualResult: Int?
-        let fInt: Function<Int> = {1}
+        let fInt: Supplier<Int> = {1}
         
         /// When
         do {
@@ -172,7 +172,7 @@ public final class ComposableTest: XCTestCase {
         /// Setup
         var actualError: Error?
         var actualResult: Int?
-        let fInt: Function<Int> = {throw FPError.any("")}
+        let fInt: Supplier<Int> = {throw FPError.any("")}
         
         /// When
         do {
@@ -195,7 +195,7 @@ public final class ComposableTest: XCTestCase {
         let error = "Error"
         let retryCount = 10
         let dispatchQueue = DispatchQueue.global(qos: .background)
-        let fInt: Function<Int> = {throw FPError.any(error)}
+        let fInt: Supplier<Int> = {throw FPError.any(error)}
         let publishF: (Error) -> Void = {_ in publishCount += 1}
         
         let reset: () -> Void = {

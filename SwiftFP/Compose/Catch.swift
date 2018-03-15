@@ -12,17 +12,17 @@ public extension Composable {
     /// - Parameter c: A Error transform function.
     /// - Returns: A Composable instance.
     public static func `catch`(_ c: @escaping (Error) throws -> T) -> Composable<T> {
-        let ff: FunctionF<T> = {(f: @escaping Function<T>) -> Function<T> in
+        let sf: SupplierF<T> = {(s: @escaping Supplier<T>) -> Supplier<T> in
             return {
                 do {
-                    return try f()
+                    return try s()
                 } catch let e {
                     return try c(e)
                 }
             }
         }
         
-        return Composable(ff)
+        return Composable(sf)
     }
     
     /// This is similar to catch, but returns a value when an error occurs.

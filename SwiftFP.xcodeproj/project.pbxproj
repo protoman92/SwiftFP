@@ -28,6 +28,7 @@
 		D3068D6A2058BDE1000BD522 /* ReaderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3068D652058BDE1000BD522 /* ReaderTest.swift */; };
 		D3068D6C2058BE6B000BD522 /* Optional+Zip.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3068D6B2058BE6B000BD522 /* Optional+Zip.swift */; };
 		D3068D6E2058C0E6000BD522 /* FPError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3068D6D2058C0E6000BD522 /* FPError.swift */; };
+		D30DE336205A11CC00A66C8F /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D30DE335205A11CC00A66C8F /* README.md */; };
 		D3F118FF2059FE8300F5B028 /* Catch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F118FE2059FE8300F5B028 /* Catch.swift */; };
 		D3F119012059FE9E00F5B028 /* Retry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F119002059FE9E00F5B028 /* Retry.swift */; };
 		D3F70EAE20591E970039A97F /* Try+Zip.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F70EAD20591E970039A97F /* Try+Zip.swift */; };
@@ -73,6 +74,7 @@
 		D3068D652058BDE1000BD522 /* ReaderTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReaderTest.swift; sourceTree = "<group>"; };
 		D3068D6B2058BE6B000BD522 /* Optional+Zip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Zip.swift"; sourceTree = "<group>"; };
 		D3068D6D2058C0E6000BD522 /* FPError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FPError.swift; sourceTree = "<group>"; };
+		D30DE335205A11CC00A66C8F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D3F118FE2059FE8300F5B028 /* Catch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Catch.swift; sourceTree = "<group>"; };
 		D3F119002059FE9E00F5B028 /* Retry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Retry.swift; sourceTree = "<group>"; };
 		D3F70EAD20591E970039A97F /* Try+Zip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Try+Zip.swift"; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 		D3068D2A2058BD27000BD522 = {
 			isa = PBXGroup;
 			children = (
+				D30DE335205A11CC00A66C8F /* README.md */,
 				D3068D362058BD27000BD522 /* SwiftFP */,
 				D3068D412058BD27000BD522 /* SwiftFPTests */,
 				D3068D352058BD27000BD522 /* Products */,
@@ -296,6 +299,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D30DE336205A11CC00A66C8F /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

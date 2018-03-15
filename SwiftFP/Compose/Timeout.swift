@@ -21,11 +21,11 @@ public extension Composable {
     /// - Returns: A Composable instance.
     public static func timeout(_ duration: TimeInterval) -> (DispatchQueue) -> Composable<T> {
         return {(dq: DispatchQueue) -> Composable<T> in
-            let ff: FunctionF<T> = {(f: @escaping Function<T>) -> Function<T> in
+            let sf: SupplierF<T> = {(s: @escaping Supplier<T>) -> Supplier<T> in
                 return {
                     dispatchPrecondition(condition: .notOnQueue(dq))
                     let mutex = NSLock()
-                    var resultF: Function<T>?
+                    var resultF: Supplier<T>?
                     var timedout = false
                     
                     let setTimedOut: (Bool) -> Void = {
@@ -34,7 +34,7 @@ public extension Composable {
                         timedout = $0
                     }
                     
-                    let setResult: (@escaping Function<T>) -> Void = {
+                    let setResult: (@escaping Supplier<T>) -> Void = {
                         mutex.lock()
                         defer { mutex.unlock() }
                         resultF = $0
@@ -42,7 +42,7 @@ public extension Composable {
                     
                     dq.async {
                         do {
-                            let value = try f()
+                            let value = try s()
                             setResult({value})
                         } catch let e {
                             setResult({throw e})
@@ -63,7 +63,7 @@ public extension Composable {
                 }
             }
             
-            return Composable(ff)
+            return Composable(sf)
         }
     }
 }

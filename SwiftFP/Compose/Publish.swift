@@ -8,20 +8,20 @@
 
 public extension Composable {
     
-    /// Publish the result of a function.
+    /// Publish the result of a Supplier.
     ///
     /// - Parameter p: A callback function.
     /// - Returns: A Composable instance.
     public static func publish(_ p: @escaping (T) throws -> Void) -> Composable<T> {
-        let ff: FunctionF<T> = {(f: @escaping Function<T>) throws -> Function<T> in
+        let ss: SupplierF<T> = {(s: @escaping Supplier<T>) throws -> Supplier<T> in
             return {
-                let value = try f()
+                let value = try s()
                 try p(value)
                 return value
             }
         }
         
-        return Composable(ff)
+        return Composable(ss)
     }
     
     /// publishError is similar to publish, but it only publishes if an error
@@ -30,10 +30,10 @@ public extension Composable {
     /// - Parameter p: An error callback function.
     /// - Returns: A Composable instance.
     public static func publishError(_ p: @escaping (Error) throws -> Void) -> Composable<T> {
-        let ff: FunctionF<T> = {(f: @escaping Function<T>) -> Function<T> in
+        let ss: SupplierF<T> = {(s: @escaping Supplier<T>) -> Supplier<T> in
             return {
                 do {
-                    return try f()
+                    return try s()
                 } catch let e {
                     try p(e)
                     throw e
@@ -41,6 +41,6 @@ public extension Composable {
             }
         }
         
-        return Composable(ff)
+        return Composable(ss)
     }
 }

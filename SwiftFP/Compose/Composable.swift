@@ -6,37 +6,37 @@
 //  Copyright © 2018 Hai Pham. All rights reserved.
 //
 
-/// Function represents a function that returns some data.
-public typealias Function<T> = () throws -> T
+/// Supplier represents a function that returns some data.
+public typealias Supplier<T> = () throws -> T
 
-/// FunctionF represents a function that maps a Function to another Function.
-public typealias FunctionF<T> = (@escaping Function<T>) throws -> Function<T>
+/// SupplierF represents a function that maps a Supplier to another Supplier.
+public typealias SupplierF<T> = (@escaping Supplier<T>) throws -> Supplier<T>
 
 /// Composable represents a function wrapper that can compose with other
 /// Composables to enhance the wrapped function.
 public struct Composable<T> {
-    private let ff: FunctionF<T>
+    private let sf: SupplierF<T>
     
-    public init(_ ff: @escaping FunctionF<T>) {
-        self.ff = ff
+    public init(_ sf: @escaping SupplierF<T>) {
+        self.sf = sf
     }
     
-    /// Invoke the inner FunctionF.
+    /// Invoke the inner SupplierF.
     ///
-    /// - Parameter f: A Function instance.
-    /// - Returns: A Function instance.
+    /// - Parameter s: A Supplier instance.
+    /// - Returns: A Supplier instance.
     /// - Throws: If the operation fails.
-    public func invoke(_ f: @escaping Function<T>) throws -> Function<T> {
-        return try ff(f)
+    public func invoke(_ s: @escaping Supplier<T>) throws -> Supplier<T> {
+        return try sf(s)
     }
     
-    /// Compose with another FunctionF to enhance functionalities.
+    /// Compose with another SupplierF to enhance functionalities.
     ///
-    /// - Parameter ff: A FunctionF instance.
+    /// - Parameter sf: A SupplierF instance.
     /// - Returns: A Composable instance.
-    public func compose(_ ff: @escaping FunctionF<T>) -> Composable<T> {
-        let newFF: FunctionF<T> = {(f: @escaping Function<T>) -> Function<T> in
-            return try self.invoke(ff(f))
+    public func compose(_ sf: @escaping SupplierF<T>) -> Composable<T> {
+        let newFF: SupplierF<T> = {(s: @escaping Supplier<T>) -> Supplier<T> in
+            return try self.invoke(sf(s))
         }
         
         return Composable(newFF)
@@ -47,6 +47,6 @@ public struct Composable<T> {
     /// - Parameter cp: A Composable instance.
     /// - Returns: A Composable instance.
     public func compose(_ cp: Composable<T>) -> Composable<T> {
-        return compose(cp.ff)
+        return compose(cp.sf)
     }
 }
