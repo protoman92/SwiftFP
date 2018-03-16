@@ -76,7 +76,7 @@ public extension ReaderType {
   ///   - reader: A ReaderConvertibleType instance.
   ///   - g: Transform function.
   /// - Returns: A Reader instance.
-  public func zip<R, Val1, U>(with reader: R, _ g: @escaping (Val, Val1) throws -> U)
+  public func zip<R, Val1, U>(_ reader: R, _ g: @escaping (Val, Val1) throws -> U)
     -> Reader<Env, U> where R: ReaderConvertibleType, R.Env == Env, R.Val == Val1
   {
     return flatMap({val in reader.asReader().map({try g(val, $0)})})
@@ -88,7 +88,7 @@ public extension ReaderType {
   ///   - reader: A ReaderConvertibleType instance.
   ///   - g: Transform function.
   /// - Returns: A Reader instance.
-  public func zip<R, Env1, Val1, U>(with reader: R, _ g: @escaping (Val, Val1) throws -> U)
+  public func zip<R, Env1, Val1, U>(_ reader: R, _ g: @escaping (Val, Val1) throws -> U)
     -> Reader<(Env,Env1),U> where R: ReaderConvertibleType, R.Env == Env1, R.Val == Val1
   {
     return Reader({try g(self.run($0.0), reader.asReader().run($0.1))})
@@ -142,7 +142,7 @@ public extension Reader {
     R1.Env == Env, R1.Val == Val,
     R2.Env == Env, R2.Val == Val1
   {
-    return r1.asReader().zip(with: r2, g)
+    return r1.asReader().zip(r2, g)
   }
 
   /// Convenient method to zip two ReaderConvertibleType.
@@ -161,7 +161,7 @@ public extension Reader {
     R1.Env == Env, R1.Val == Val,
     R2.Env == Env1, R2.Val == Val1
   {
-    return r1.asReader().zip(with: r2, g)
+    return r1.asReader().zip(r2, g)
   }
 
   /// Zip a Sequence of ReaderConvertibleType using a function.

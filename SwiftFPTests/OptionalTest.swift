@@ -57,8 +57,8 @@ public final class OptionalTest: XCTestCase {
     let o2 = Optional<Int>.none
 
     /// When
-    let t1 = o1.asTry(error: FPError(error))
-    let t2 = o2.asTry(error: error)
+    let t1 = o1.asTry(FPError(error))
+    let t2 = o2.asTry(error)
 
     /// Then
     XCTAssertTrue(t1.isSuccess)

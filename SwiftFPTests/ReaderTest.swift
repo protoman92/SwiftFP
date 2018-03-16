@@ -29,10 +29,10 @@ public final class ReaderTest: XCTestCase {
     //// Setup
     let r1 = Reader<Int, Int>({$0 * 2})
     let r2 = Reader<Int, Int>({$0 * 3})
-    let z1 = r1.zip(with: r2, {$0 * $1})
+    let z1 = r1.zip(r2, {$0 * $1})
 
     let r3 = Reader<Double, Double>({$0 * 5})
-    let z2 = r1.zip(with: r3, {Double($0) + $1})
+    let z2 = r1.zip(r3, {Double($0) + $1})
     let r4 = Reader<Int, Int>.zip({$0.reduce(0, +)}, r1, r2, z1)
 
     /// When & Then

@@ -13,22 +13,22 @@ extension Optional: TryConvertibleType {
   ///
   /// - Returns: A Try instance.
   public func asTry() -> Try<Val> {
-    return Try<Val>.from(optional: self)
+    return Try<Val>.from(self)
   }
 
   /// Convert this Optional into a Try.
   ///
   /// - Parameter error: An Error instance.
   /// - Returns: A Try instance.
-  public func asTry(error: Error) -> Try<Val> {
-    return Try<Val>.from(optional: self, error: error)
+  public func asTry(_ error: Error) -> Try<Val> {
+    return Try<Val>.from(self, error)
   }
 
   /// Convert this Optional into a Try.
   ///
   /// - Parameter error: A String value.
   /// - Returns: A Try instance.
-  public func asTry(error: String) -> Try<Val> {
-    return asTry(error: FPError(error))
+  public func asTry(_ error: String) -> Try<Val> {
+    return asTry(FPError(error))
   }
 }
