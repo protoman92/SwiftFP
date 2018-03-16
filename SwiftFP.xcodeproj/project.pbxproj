@@ -25,6 +25,7 @@
 		D3068D6C2058BE6B000BD522 /* Optional+Zip.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3068D6B2058BE6B000BD522 /* Optional+Zip.swift */; };
 		D3068D6E2058C0E6000BD522 /* FPError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3068D6D2058C0E6000BD522 /* FPError.swift */; };
 		D30DE336205A11CC00A66C8F /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D30DE335205A11CC00A66C8F /* README.md */; };
+		D315FE8A205B6E050050CED0 /* SwiftFP.podspec in Resources */ = {isa = PBXBuildFile; fileRef = D315FE89205B6E050050CED0 /* SwiftFP.podspec */; };
 		D3F70EAE20591E970039A97F /* Try+Zip.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F70EAD20591E970039A97F /* Try+Zip.swift */; };
 		FA98F433CD29E8A1C6F3A260 /* Pods_SwiftFPTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74E827F78B340C57BF7EC0DA /* Pods_SwiftFPTests.framework */; };
 /* End PBXBuildFile section */
@@ -65,6 +66,7 @@
 		D3068D6B2058BE6B000BD522 /* Optional+Zip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Zip.swift"; sourceTree = "<group>"; };
 		D3068D6D2058C0E6000BD522 /* FPError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FPError.swift; sourceTree = "<group>"; };
 		D30DE335205A11CC00A66C8F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		D315FE89205B6E050050CED0 /* SwiftFP.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SwiftFP.podspec; sourceTree = "<group>"; };
 		D3F70EAD20591E970039A97F /* Try+Zip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Try+Zip.swift"; sourceTree = "<group>"; };
 		D430AC7981A484008019F5D1 /* Pods-SwiftFP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftFP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftFP/Pods-SwiftFP.debug.xcconfig"; sourceTree = "<group>"; };
 		FE404559083ED7A0154F7D6C /* Pods_SwiftFP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftFP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -114,6 +116,7 @@
 		D3068D2A2058BD27000BD522 = {
 			isa = PBXGroup;
 			children = (
+				D315FE89205B6E050050CED0 /* SwiftFP.podspec */,
 				D30DE335205A11CC00A66C8F /* README.md */,
 				D3068D362058BD27000BD522 /* SwiftFP */,
 				D3068D412058BD27000BD522 /* SwiftFPTests */,
@@ -265,6 +268,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D315FE8A205B6E050050CED0 /* SwiftFP.podspec in Resources */,
 				D30DE336205A11CC00A66C8F /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

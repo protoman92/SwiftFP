@@ -8,17 +8,17 @@
 
 // Utility errors for FP data structures.
 public struct FPError {
-    fileprivate let message: String?
-    
-    public init(_ message: String?) {
-        self.message = message
-    }
+  fileprivate let message: String?
+
+  public init(_ message: String?) {
+    self.message = message
+  }
 }
 
 extension FPError: Error {}
 
 extension FPError: LocalizedError {
-    public var errorDescription: String? {
-        return message
-    }
+  public var errorDescription: String? {
+    return message
+  }
 }
