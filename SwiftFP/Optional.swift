@@ -20,6 +20,12 @@ public protocol OptionalType: OptionalConvertibleType {
   static func nothing() -> Optional<Value>
 
   var value: Value? { get }
+
+  /// Convenience method to cast the inner value to a different type.
+  ///
+  /// - Parameter cls: Class type.
+  /// - Returns: An Optional instance.
+  func cast<T>(_ cls: T.Type) -> Optional<T>
 }
 
 public extension OptionalType {
@@ -70,6 +76,10 @@ extension Optional: OptionalType {
     case .some(let value): return value
     default: return nil
     }
+  }
+
+  public func cast<T>(_ cls: T.Type) -> Optional<T> {
+    return flatMap({$0 as? T})
   }
 
   /// Get the wrapped value, or a default value if it is not available.

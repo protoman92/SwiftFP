@@ -37,7 +37,7 @@ public final class OptionalTest: XCTestCase {
     /// When & Then
     XCTAssertEqual(o1.someOrElse(o2), 1)
     XCTAssertEqual(o1.getOrElse(o3), 1)
-    XCTAssertEqual(o2.getOrElse(o1), 1)
+    XCTAssertEqual(o2.asOptional().someOrElse(o1), 1)
   }
 
   public func test_optionalJustAndNothing_shouldWork() {
@@ -103,5 +103,19 @@ public final class OptionalTest: XCTestCase {
     XCTAssertTrue(o1f.isNothing)
     XCTAssertTrue(o2f.isSome)
     XCTAssertTrue(o3f.isNothing)
+  }
+
+  public func test_optionalCast_shouldWork() {
+    /// Setup
+    let o1 = Optional.some(1)
+    let o2 = Optional<Int>.nothing()
+
+    /// When
+    let o1c = o1.cast(Any.self)
+    let o2c = o2.cast(Any.self)
+
+    /// Then
+    XCTAssertTrue(o1c.isSome)
+    XCTAssertTrue(o2c.isNothing)
   }
 }

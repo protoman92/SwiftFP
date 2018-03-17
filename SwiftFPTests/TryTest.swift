@@ -50,8 +50,8 @@ public final class TryTest: XCTestCase {
 
   public func test_tryToOptional_shouldWork() {
     /// Setup
-    let o1 = Try.just(1)
-    let o2 = Try<Int>.nothing()
+    let o1 = Try.success(1).asOptional()
+    let o2 = Try<Int>.failure("Nothing").asOptional()
 
     /// When & Then
     XCTAssertEqual(o1.value, 1)
@@ -118,5 +118,19 @@ public final class TryTest: XCTestCase {
     XCTAssertTrue(try1f.isFailure)
     XCTAssertTrue(try2f.isSuccess)
     XCTAssertEqual(try3f.error?.localizedDescription, "Error 3")
+  }
+
+  public func test_tryCast_shouldWork() {
+    /// Setup
+    let t1 = Try.success(1)
+    let t2 = Try<Int>.failure("Error!")
+
+    /// When
+    let t1c = t1.cast(Any.self)
+    let t2c = t2.cast(Any.self)
+
+    /// Then
+    XCTAssertTrue(t1c.isSuccess)
+    XCTAssertTrue(t2c.isFailure)
   }
 }

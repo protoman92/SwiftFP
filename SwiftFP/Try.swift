@@ -106,6 +106,20 @@ public extension TryType {
     return filter(selector, FPError(error))
   }
 
+  /// Convenience method to cast the inner value to a different type.
+  ///
+  /// - Parameter cls: Class type.
+  /// - Returns: A Try instance.
+  public func cast<T>(_ cls: T.Type) -> Try<T> {
+    return map({
+      if let tVal = $0 as? T {
+        return tVal
+      } else {
+        throw FPError("\($0) is not of type \(cls)")
+      }
+    })
+  }
+
   /// Functor.
   ///
   /// - Parameter f: Transform function.

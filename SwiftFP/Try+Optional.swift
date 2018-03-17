@@ -14,16 +14,6 @@ extension Try: OptionalConvertibleType {
   }
 }
 
-extension Try: OptionalType {
-  public static func just(_ value: Value) -> Optional<Value> {
-    return Optional<Value>.some(value)
-  }
-
-  public static func nothing() -> Optional<Value> {
-    return Optional<Value>.none
-  }
-}
-
 public extension Try {
 
   /// Produce a Try from an Optional, and throw an Error if the value is
