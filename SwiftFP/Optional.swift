@@ -67,7 +67,7 @@ extension Optional: OptionalType {
     return .none
   }
 
-  public func asOptional() -> Optional<Wrapped> {
+  public func asOptional() -> Optional<Value> {
     return self
   }
 
@@ -84,33 +84,33 @@ extension Optional: OptionalType {
 
   /// Get the wrapped value, or a default value if it is not available.
   ///
-  /// - Parameter value: A Wrapped instance.
-  /// - Returns: A Wrapped instance.
-  public func getOrElse(_ value: Wrapped) -> Wrapped {
+  /// - Parameter value: A Value instance.
+  /// - Returns: A Value instance.
+  public func getOrElse(_ value: Value) -> Value {
     switch self {
     case .some(let a): return a
     case .none: return value
     }
   }
 
-  /// Get the Wrapped value or throw an Error.
+  /// Get the Value instance or throw an Error.
   ///
   /// - Parameter error: An Error instance.
-  /// - Returns: The Wrapped value.
+  /// - Returns: A Value instance.
   /// - Throws: Error if the value is not available.
-  public func getOrThrow(_ error: Error) throws -> Wrapped {
+  public func getOrThrow(_ error: Error) throws -> Value {
     switch self {
     case .some(let a): return a
     case .none: throw error
     }
   }
 
-  /// Get the Wrapped value or throw an Error.
+  /// Get the Value instance or throw an Error.
   ///
   /// - Parameter error: A String value.
-  /// - Returns: The Wrapped value.
+  /// - Returns: A Value instance.
   /// - Throws: Error if the value is not available.
-  public func getOrThrow(_ error: String) throws -> Wrapped {
+  public func getOrThrow(_ error: String) throws -> Value {
     return try getOrThrow(FPError(error))
   }
 
@@ -119,7 +119,7 @@ extension Optional: OptionalType {
   ///
   /// - Parameter selector: Selector function.
   /// - Returns: An Optional instance.
-  public func filter(_ selector: (Val) throws -> Bool) -> Optional<Val> {
+  public func filter(_ selector: (Value) throws -> Bool) -> Optional<Value> {
     return asTry().filter(selector, "").asOptional()
   }
 }

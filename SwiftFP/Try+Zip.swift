@@ -15,7 +15,7 @@ public extension Try {
   ///   - try2: A TryConvertibleType instance.
   ///   - f: Transform function.
   /// - Returns: A Try instance.
-  static func zip<T1, T2, V3>(_ try1: T1, _ try2: T2, _ f: (T1.Val, T2.Val) throws -> V3)
+  static func zip<T1, T2, V3>(_ try1: T1, _ try2: T2, _ f: (T1.Value, T2.Value) throws -> V3)
     -> Try<V3> where
     T1: TryConvertibleType,
     T2: TryConvertibleType
@@ -29,7 +29,7 @@ public extension Try {
   ///   - tries: A Sequence of TryConvertibleType.
   ///   - resultSelector: Selector function.
   /// - Returns: A Try instance.
-  static func zip<TC, V2, S>(_ tries: S, _ resultSelector: ([TC.Val]) throws -> V2)
+  static func zip<TC, V2, S>(_ tries: S, _ resultSelector: ([TC.Value]) throws -> V2)
     -> Try<V2> where
     TC: TryConvertibleType,
     S: Sequence, S.Element == TC
@@ -48,7 +48,7 @@ public extension Try {
   ///   - resultSelector: Selector function.
   ///   - tries: Varargs of TryConvertibleType.
   /// - Returns: A Try instance.
-  static func zip<TC, V2>(_ resultSelector: ([TC.Val]) throws -> V2,
+  static func zip<TC, V2>(_ resultSelector: ([TC.Value]) throws -> V2,
                           _ tries: TC...) -> Try<V2> where
     TC: TryConvertibleType
   {
@@ -61,7 +61,7 @@ public extension Try {
   ///   - try2: A TryConvertibleType instance.
   ///   - f: Transform function.
   /// - Returns: A Try instance.
-  public func zipWith<TC, V2>(_ try2: TC, _ f: (Val, TC.Val) throws -> V2)
+  func zipWith<TC, V2>(_ try2: TC, _ f: (Value, TC.Value) throws -> V2)
     -> Try<V2> where TC: TryConvertibleType
   {
     return flatMap({v1 in try2.asTry().map({try f(v1, $0)})})
