@@ -95,8 +95,8 @@ public extension OptionalType {
   ///
   /// - Parameter fn: Function that produces the backup value.
   /// - Returns: An Optional instance.
-  func catchNothing(_ fn: () -> Value) -> Optional<Value> {
-    return value ?? fn()
+  func catchNothing(_ fn: () throws -> Value) -> Optional<Value> {
+    return value ?? (try? fn())
   }
 }
 
