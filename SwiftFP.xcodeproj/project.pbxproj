@@ -11,17 +11,13 @@
 		D3068D3E2058BD27000BD522 /* SwiftFP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3068D342058BD27000BD522 /* SwiftFP.framework */; };
 		D3068D452058BD27000BD522 /* SwiftFP.h in Headers */ = {isa = PBXBuildFile; fileRef = D3068D372058BD27000BD522 /* SwiftFP.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3068D572058BDD5000BD522 /* Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3068D4E2058BDD5000BD522 /* Optional.swift */; };
-		D3068D592058BDD5000BD522 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3068D502058BDD5000BD522 /* State.swift */; };
 		D3068D5A2058BDD5000BD522 /* Try.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3068D512058BDD5000BD522 /* Try.swift */; };
 		D3068D5B2058BDD5000BD522 /* Optional+Try.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3068D522058BDD5000BD522 /* Optional+Try.swift */; };
-		D3068D5D2058BDD5000BD522 /* Reader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3068D542058BDD5000BD522 /* Reader.swift */; };
 		D3068D5E2058BDD5000BD522 /* Try+Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3068D552058BDD5000BD522 /* Try+Optional.swift */; };
 		D3068D5F2058BDD5000BD522 /* Either.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3068D562058BDD5000BD522 /* Either.swift */; };
-		D3068D662058BDE1000BD522 /* StateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3068D612058BDE1000BD522 /* StateTest.swift */; };
 		D3068D672058BDE1000BD522 /* TryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3068D622058BDE1000BD522 /* TryTest.swift */; };
 		D3068D682058BDE1000BD522 /* EitherTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3068D632058BDE1000BD522 /* EitherTest.swift */; };
 		D3068D692058BDE1000BD522 /* OptionalTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3068D642058BDE1000BD522 /* OptionalTest.swift */; };
-		D3068D6A2058BDE1000BD522 /* ReaderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3068D652058BDE1000BD522 /* ReaderTest.swift */; };
 		D3068D6C2058BE6B000BD522 /* Optional+Zip.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3068D6B2058BE6B000BD522 /* Optional+Zip.swift */; };
 		D3068D6E2058C0E6000BD522 /* FPError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3068D6D2058C0E6000BD522 /* FPError.swift */; };
 		D30DE336205A11CC00A66C8F /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D30DE335205A11CC00A66C8F /* README.md */; };
@@ -51,18 +47,14 @@
 		D3068D3D2058BD27000BD522 /* SwiftFPTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftFPTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3068D442058BD27000BD522 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D3068D4E2058BDD5000BD522 /* Optional.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Optional.swift; sourceTree = "<group>"; };
-		D3068D502058BDD5000BD522 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		D3068D512058BDD5000BD522 /* Try.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Try.swift; sourceTree = "<group>"; };
 		D3068D522058BDD5000BD522 /* Optional+Try.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Optional+Try.swift"; sourceTree = "<group>"; };
-		D3068D542058BDD5000BD522 /* Reader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reader.swift; sourceTree = "<group>"; };
 		D3068D552058BDD5000BD522 /* Try+Optional.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Try+Optional.swift"; sourceTree = "<group>"; };
 		D3068D562058BDD5000BD522 /* Either.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Either.swift; sourceTree = "<group>"; };
 		D3068D602058BDE0000BD522 /* SwiftFPTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SwiftFPTests-Bridging-Header.h"; sourceTree = "<group>"; };
-		D3068D612058BDE1000BD522 /* StateTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateTest.swift; sourceTree = "<group>"; };
 		D3068D622058BDE1000BD522 /* TryTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TryTest.swift; sourceTree = "<group>"; };
 		D3068D632058BDE1000BD522 /* EitherTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EitherTest.swift; sourceTree = "<group>"; };
 		D3068D642058BDE1000BD522 /* OptionalTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionalTest.swift; sourceTree = "<group>"; };
-		D3068D652058BDE1000BD522 /* ReaderTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReaderTest.swift; sourceTree = "<group>"; };
 		D3068D6B2058BE6B000BD522 /* Optional+Zip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Zip.swift"; sourceTree = "<group>"; };
 		D3068D6D2058C0E6000BD522 /* FPError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FPError.swift; sourceTree = "<group>"; };
 		D30DE335205A11CC00A66C8F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -138,18 +130,16 @@
 		D3068D362058BD27000BD522 /* SwiftFP */ = {
 			isa = PBXGroup;
 			children = (
+				D3068D372058BD27000BD522 /* SwiftFP.h */,
+				D3068D382058BD27000BD522 /* Info.plist */,
 				D3068D562058BDD5000BD522 /* Either.swift */,
+				D3068D6D2058C0E6000BD522 /* FPError.swift */,
 				D3068D4E2058BDD5000BD522 /* Optional.swift */,
 				D3068D522058BDD5000BD522 /* Optional+Try.swift */,
 				D3068D6B2058BE6B000BD522 /* Optional+Zip.swift */,
-				D3068D542058BDD5000BD522 /* Reader.swift */,
-				D3068D502058BDD5000BD522 /* State.swift */,
 				D3068D512058BDD5000BD522 /* Try.swift */,
 				D3068D552058BDD5000BD522 /* Try+Optional.swift */,
 				D3F70EAD20591E970039A97F /* Try+Zip.swift */,
-				D3068D6D2058C0E6000BD522 /* FPError.swift */,
-				D3068D382058BD27000BD522 /* Info.plist */,
-				D3068D372058BD27000BD522 /* SwiftFP.h */,
 			);
 			path = SwiftFP;
 			sourceTree = "<group>";
@@ -157,12 +147,10 @@
 		D3068D412058BD27000BD522 /* SwiftFPTests */ = {
 			isa = PBXGroup;
 			children = (
-				D3068D632058BDE1000BD522 /* EitherTest.swift */,
-				D3068D442058BD27000BD522 /* Info.plist */,
-				D3068D642058BDE1000BD522 /* OptionalTest.swift */,
-				D3068D652058BDE1000BD522 /* ReaderTest.swift */,
-				D3068D612058BDE1000BD522 /* StateTest.swift */,
 				D3068D602058BDE0000BD522 /* SwiftFPTests-Bridging-Header.h */,
+				D3068D442058BD27000BD522 /* Info.plist */,
+				D3068D632058BDE1000BD522 /* EitherTest.swift */,
+				D3068D642058BDE1000BD522 /* OptionalTest.swift */,
 				D3068D622058BDE1000BD522 /* TryTest.swift */,
 			);
 			path = SwiftFPTests;
@@ -323,12 +311,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D3068D5D2058BDD5000BD522 /* Reader.swift in Sources */,
 				D3068D5B2058BDD5000BD522 /* Optional+Try.swift in Sources */,
 				D3068D6E2058C0E6000BD522 /* FPError.swift in Sources */,
 				D3F70EAE20591E970039A97F /* Try+Zip.swift in Sources */,
 				D3068D572058BDD5000BD522 /* Optional.swift in Sources */,
-				D3068D592058BDD5000BD522 /* State.swift in Sources */,
 				D3068D5E2058BDD5000BD522 /* Try+Optional.swift in Sources */,
 				D3068D6C2058BE6B000BD522 /* Optional+Zip.swift in Sources */,
 				D3068D5F2058BDD5000BD522 /* Either.swift in Sources */,
@@ -340,8 +326,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D3068D6A2058BDE1000BD522 /* ReaderTest.swift in Sources */,
-				D3068D662058BDE1000BD522 /* StateTest.swift in Sources */,
 				D3068D672058BDE1000BD522 /* TryTest.swift in Sources */,
 				D3068D682058BDE1000BD522 /* EitherTest.swift in Sources */,
 				D3068D692058BDE1000BD522 /* OptionalTest.swift in Sources */,
