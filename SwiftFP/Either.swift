@@ -26,18 +26,18 @@ public protocol EitherType: EitherConvertibleType {
 public extension EitherType {
 
   /// Check if this Either is left.
-  public var isLeft: Bool {
+  var isLeft: Bool {
     return left != nil
   }
 
   /// Check if this Either is right.
-  public var isRight: Bool {
+  var isRight: Bool {
     return right != nil
   }
 
   /// Since Either is non-biased by default, we need to access projections
   /// for left/right bias.
-  public var projection: Projection<Left, Right> {
+  var projection: Projection<Left, Right> {
     return Projection(asEither())
   }
 
@@ -45,7 +45,7 @@ public extension EitherType {
   ///
   /// - Parameter value: Fallback R value.
   /// - Returns: R instance.
-  public func getOrElse(_ value: Right) -> Right {
+  func getOrElse(_ value: Right) -> Right {
     return right ?? value
   }
 
@@ -54,7 +54,7 @@ public extension EitherType {
   /// - Parameter error: An Error instance.
   /// - Returns: R instance.
   /// - Throws: Error if right is not available.
-  public func getOrThrow(_ error: Error) throws -> Right {
+  func getOrThrow(_ error: Error) throws -> Right {
     if let right = self.right {
       return right
     } else {
@@ -68,7 +68,7 @@ public extension EitherType {
   ///   - f1: left-side map function.
   ///   - f2: right-side map function.
   /// - Returns: An Either instance.
-  public func bimap<L1, R1>(_ f1: (Left) -> L1, _ f2: (Right) -> R1) -> Either<L1, R1> {
+  func bimap<L1, R1>(_ f1: (Left) -> L1, _ f2: (Right) -> R1) -> Either<L1, R1> {
     return projection.left.map(f1).asEither().projection.right.map(f2).asEither()
   }
 }
@@ -126,12 +126,12 @@ public class Projection<L, R> {
 public extension Projection {
 
   /// Get LeftProjection.
-  public var left: LeftProjection<L, R> {
+  var left: LeftProjection<L, R> {
     return LeftProjection(either)
   }
 
   /// Get RightProjection.
-  public var right: RightProjection<L, R> {
+  var right: RightProjection<L, R> {
     return RightProjection(either)
   }
 }

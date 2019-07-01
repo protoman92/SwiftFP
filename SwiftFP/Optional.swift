@@ -29,11 +29,11 @@ public protocol OptionalType: OptionalConvertibleType {
 }
 
 public extension OptionalType {
-  public var isSome: Bool {
+  var isSome: Bool {
     return value != nil
   }
 
-  public var isNothing: Bool {
+  var isNothing: Bool {
     return !isSome
   }
 
@@ -41,7 +41,7 @@ public extension OptionalType {
   ///
   /// - Parameter backup: An Optional instance.
   /// - Returns: An Optional instance.
-  public func getOrElse(_ backup: Optional<Value>) -> Optional<Value> {
+  func getOrElse(_ backup: Optional<Value>) -> Optional<Value> {
     return isSome ? self.asOptional() : backup
   }
 
@@ -49,7 +49,7 @@ public extension OptionalType {
   ///
   /// - Parameter backup: An OptionalConvertibleType instance.
   /// - Returns: An Optional instance.
-  public func someOrElse<OC>(_ backup: OC) -> Optional<Value> where
+  func someOrElse<OC>(_ backup: OC) -> Optional<Value> where
     OC: OptionalConvertibleType, OC.Value == Value
   {
     return getOrElse(backup.asOptional())

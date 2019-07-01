@@ -23,7 +23,7 @@ public protocol TryType: TryConvertibleType, EitherConvertibleType {
 }
 
 public extension TryType {
-  public func asEither() -> Either<Error, Val> {
+  func asEither() -> Either<Error, Val> {
     do {
       return Either.right(try getOrThrow())
     } catch let error {
@@ -45,7 +45,7 @@ public extension TryType {
   ///
   /// - Returns: A Val instance.
   /// - Throws: Error if success value if absent.
-  public func getOrThrow() throws -> Val {
+  func getOrThrow() throws -> Val {
     if let value = self.value {
       return value
     } else if let error = self.error {
@@ -59,7 +59,7 @@ public extension TryType {
   ///
   /// - Parameter backup: A Val instance.
   /// - Returns: A Val instance.
-  public func getOrElse(_ backup: Val) -> Val {
+  func getOrElse(_ backup: Val) -> Val {
     if let value = self.value {
       return value
     } else {
@@ -71,7 +71,7 @@ public extension TryType {
   ///
   /// - Parameter backup: A TryConvertibleType instance.
   /// - Returns: A Try instance.
-  public func successOrElse<TC>(_ backup: TC) -> Try<Val> where
+  func successOrElse<TC>(_ backup: TC) -> Try<Val> where
     TC: TryConvertibleType, TC.Val == Val
   {
     return isSuccess ? self.asTry() : backup.asTry()
@@ -87,7 +87,7 @@ public extension TryType {
   ///   - selector: Selector function.
   ///   - error: An Error instance.
   /// - Returns: A Try instance.
-  public func filter(_ selector: (Val) throws -> Bool, _ error: Error) -> Try<Val> {
+  func filter(_ selector: (Val) throws -> Bool, _ error: Error) -> Try<Val> {
     do {
       let value = try getOrThrow()
       return try selector(value) ? Try.success(value) : Try.failure(error)
@@ -102,7 +102,7 @@ public extension TryType {
   ///   - selector: Selector function.
   ///   - error: A String value.
   /// - Returns: A Try instance.
-  public func filter(_ selector: (Val) throws -> Bool, _ error: String) -> Try<Val> {
+  func filter(_ selector: (Val) throws -> Bool, _ error: String) -> Try<Val> {
     return filter(selector, FPError(error))
   }
 
@@ -110,7 +110,7 @@ public extension TryType {
   ///
   /// - Parameter cls: Class type.
   /// - Returns: A Try instance.
-  public func cast<T>(_ cls: T.Type) -> Try<T> {
+  func cast<T>(_ cls: T.Type) -> Try<T> {
     return map({
       if let tVal = $0 as? T {
         return tVal
@@ -124,7 +124,7 @@ public extension TryType {
   ///
   /// - Parameter f: Transform function.
   /// - Returns: A Try instance.
-  public func map<A1>(_ f: (Val) throws -> A1) -> Try<A1> {
+  func map<A1>(_ f: (Val) throws -> A1) -> Try<A1> {
     return Try({try f(self.getOrThrow())})
   }
 
@@ -132,7 +132,7 @@ public extension TryType {
   ///
   /// - Parameter t: A TryConvertibleType instance.
   /// - Returns: A Try instance.
-  public func apply<T, A1>(_ t: T) -> Try<A1> where
+  func apply<T, A1>(_ t: T) -> Try<A1> where
     T: TryConvertibleType, T.Val == (Val) throws -> A1
   {
     return flatMap({a in t.asTry().map({try $0(a)})})
@@ -142,7 +142,7 @@ public extension TryType {
   ///
   /// - Parameter f: Transform function.
   /// - Returns: A Try instance.
-  public func flatMap<T, Val2>(_ f: (Val) throws -> T) -> Try<Val2> where
+  func flatMap<T, Val2>(_ f: (Val) throws -> T) -> Try<Val2> where
     T: TryConvertibleType, T.Val == Val2
   {
     do {
