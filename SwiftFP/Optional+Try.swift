@@ -7,28 +7,27 @@
 //
 
 extension Optional: TryConvertibleType {
-  public typealias Val = Wrapped
 
   /// Convert this Optional into a Try.
   ///
   /// - Returns: A Try instance.
-  public func asTry() -> Try<Val> {
-    return Try<Val>.from(self)
+  public func asTry() -> Try<Value> {
+    return Try<Value>.from(self)
   }
 
   /// Convert this Optional into a Try.
   ///
   /// - Parameter error: An Error instance.
   /// - Returns: A Try instance.
-  public func asTry(_ error: Error) -> Try<Val> {
-    return Try<Val>.from(self, error)
+  public func asTry(_ error: Error) -> Try<Value> {
+    return Try<Value>.from(self, error)
   }
 
   /// Convert this Optional into a Try.
   ///
   /// - Parameter error: A String value.
   /// - Returns: A Try instance.
-  public func asTry(_ error: String) -> Try<Val> {
+  public func asTry(_ error: String) -> Try<Value> {
     return asTry(FPError(error))
   }
 }

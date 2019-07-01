@@ -42,7 +42,7 @@ public extension Optional {
   ///   - optional: An OptionalConvertibleType instance.
   ///   - resultSelector: Selector function.
   /// - Returns: An Optional instance.
-  func zipWith<OC, W2>(_ optional: OC, _ resultSelector: (Wrapped, OC.Value) throws -> W2)
+  func zipWith<OC, W2>(_ optional: OC, _ resultSelector: (Value, OC.Value) throws -> W2)
     -> Optional<W2> where OC: OptionalConvertibleType
   {
     return asTry().zipWith(optional.asOptional(), resultSelector).value
