@@ -3,7 +3,7 @@
 //  SwiftFPTests
 //
 //  Created by Hai Pham on 23/11/17.
-//  Copyright © 2017 Holmusk. All rights reserved.
+//  Copyright © 2017 Swiften. All rights reserved.
 //
 
 import XCTest

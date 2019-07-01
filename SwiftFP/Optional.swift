@@ -3,7 +3,7 @@
 //  SwiftFP
 //
 //  Created by Hai Pham on 24/9/17.
-//  Copyright © 2017 Holmusk. All rights reserved.
+//  Copyright © 2017 Swiften. All rights reserved.
 //
 
 /// Classes that implement this protocol should be convertible to an Optional.

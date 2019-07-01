@@ -3,7 +3,7 @@
 //  SwiftFP
 //
 //  Created by Hai Pham on 31/7/17.
-//  Copyright © 2017 Holmusk. All rights reserved.
+//  Copyright © 2017 Swiften. All rights reserved.
 //
 
 extension Optional: TryConvertibleType {
