@@ -26,7 +26,7 @@ public extension TryType {
   func asEither() -> Either<Error, Value> {
     do {
       return Either.right(try getOrThrow())
-    } catch let error {
+    } catch {
       return Either.left(error)
     }
   }
@@ -39,6 +39,18 @@ public extension TryType {
   /// Check if the operation failed.
   var isFailure: Bool {
     return !isSuccess
+  }
+  
+  /// Catch an Error Try and return a fallback value.
+  ///
+  /// - Parameter fn: Function that returns the fallback value.
+  /// - Returns: A Try instance.
+  func catchError(_ fn: (Error) throws -> Value) -> Try<Value> {
+    do {
+      return (try error.map({try fn($0)}) ?? value).asTry()
+    } catch {
+      return .failure(error)
+    }
   }
 
   /// Get success value or throw failure Error.
@@ -60,11 +72,7 @@ public extension TryType {
   /// - Parameter backup: A Value instance.
   /// - Returns: A Value instance.
   func getOrElse(_ backup: Value) -> Value {
-    if let value = self.value {
-      return value
-    } else {
-      return backup
-    }
+    return value ?? backup
   }
 
   /// Get the current Try if it is successful, or return another Try if not.
@@ -76,9 +84,6 @@ public extension TryType {
   {
     return isSuccess ? self.asTry() : backup.asTry()
   }
-}
-
-public extension TryType {
 
   /// Return the current Try if the inner element passes a check, otherwise
   /// return a failure Try with the supplied error.
@@ -90,9 +95,9 @@ public extension TryType {
   func filter(_ selector: (Value) throws -> Bool, _ error: Error) -> Try<Value> {
     do {
       let value = try getOrThrow()
-      return try selector(value) ? Try.success(value) : Try.failure(error)
-    } catch let e {
-      return Try.failure(e)
+      return try selector(value) ? .success(value) : .failure(error)
+    } catch {
+      return .failure(error)
     }
   }
 
@@ -112,11 +117,11 @@ public extension TryType {
   /// - Returns: A Try instance.
   func cast<T>(_ cls: T.Type) -> Try<T> {
     return map({
-      if let tVal = $0 as? T {
-        return tVal
-      } else {
+      guard let tVal = $0 as? T else {
         throw FPError("\($0) is not of type \(cls)")
       }
+      
+      return tVal
     })
   }
 
@@ -124,7 +129,7 @@ public extension TryType {
   ///
   /// - Parameter f: Transform function.
   /// - Returns: A Try instance.
-  func map<A1>(_ f: (Value) throws -> A1) -> Try<A1> {
+  func map<V1>(_ f: (Value) throws -> V1) -> Try<V1> {
     return Try({try f(self.getOrThrow())})
   }
 
@@ -132,8 +137,8 @@ public extension TryType {
   ///
   /// - Parameter t: A TryConvertibleType instance.
   /// - Returns: A Try instance.
-  func apply<T, A1>(_ t: T) -> Try<A1> where
-    T: TryConvertibleType, T.Value == (Value) throws -> A1
+  func apply<T, V1>(_ t: T) -> Try<V1> where
+    T: TryConvertibleType, T.Value == (Value) throws -> V1
   {
     return flatMap({a in t.asTry().map({try $0(a)})})
   }
@@ -142,42 +147,40 @@ public extension TryType {
   ///
   /// - Parameter f: Transform function.
   /// - Returns: A Try instance.
-  func flatMap<T, Val2>(_ f: (Value) throws -> T) -> Try<Val2> where
-    T: TryConvertibleType, T.Value == Val2
-  {
+  func flatMap<T>(_ f: (Value) throws -> T) -> Try<T.Value> where T: TryConvertibleType {
     do {
       return try f(try getOrThrow()).asTry()
-    } catch let error {
+    } catch {
       return Try.failure(error)
     }
   }
 }
 
-public final class Try<A> {
-  public static func success(_ value: A) -> Try<A> {
+public final class Try<Value> {
+  public static func success(_ value: Value) -> Try<Value> {
     return Try(value)
   }
 
-  public static func failure(_ error: Error) -> Try<A> {
+  public static func failure(_ error: Error) -> Try<Value> {
     return Try(error)
   }
 
-  public static func failure(_ error: String) -> Try<A> {
+  public static func failure(_ error: String) -> Try<Value> {
     return failure(FPError(error))
   }
 
-  public let value: A?
+  public let value: Value?
   public let error: Error?
 
-  convenience public init(_ f: () throws -> A) {
+  convenience public init(_ f: () throws -> Value) {
     do {
       self.init(try f())
-    } catch let e {
-      self.init(e)
+    } catch {
+      self.init(error)
     }
   }
 
-  public init(_ value: A) {
+  public init(_ value: Value) {
     self.value = value
     self.error = nil
   }
@@ -189,7 +192,117 @@ public final class Try<A> {
 }
 
 extension Try: TryType {
-  public func asTry() -> Try<A> {
+  public func asTry() -> Try<Value> {
     return self
   }
 }
+
+// MARK: - OptionalConvertibleType
+extension Try: OptionalConvertibleType {
+  public func asOptional() -> Optional<Value> {
+    return value
+  }
+}
+
+public extension Try {
+  
+  /// Produce a Try from an Optional, and throw an Error if the value is
+  /// absent.
+  ///
+  /// - Parameters:
+  ///   - optional: An Optional instance.
+  ///   - error: The error to be thrown when there is no value.
+  /// - Returns: A Try instance.
+  static func from(_ optional: Optional<Value>, _ error: Error) -> Try<Value> {
+    switch optional {
+    case .some(let value):
+      return Try<Value>.success(value)
+      
+    case .none:
+      return Try<Value>.failure(error)
+    }
+  }
+  
+  /// Produce a Try from an Optional, and throw an Error if the value is
+  /// absent.
+  ///
+  /// - Parameters:
+  ///   - optional: An Optional instance.
+  ///   - error: The error to be thrown when there is no value.
+  /// - Returns: A Try instance.
+  static func from(_ optional: Optional<Value>, _ error: String) -> Try<Value> {
+    return Try.from(optional, FPError(error))
+  }
+  
+  /// Produce a Try from an Optional, and throw a default Error if the value is
+  /// absent.
+  ///
+  /// - Parameter optional: An Optional instance.
+  /// - Returns: A Try instance.
+  static func from(_ optional: Optional<Value>) -> Try<Value> {
+    return Try.from(optional, "\(Value.self) cannot be nil")
+  }
+}
+
+public extension Try {
+  
+  /// Zip two Try instances to produce a Try of another type.
+  ///
+  /// - Parameters:
+  ///   - try1: A TryConvertibleType instance.
+  ///   - try2: A TryConvertibleType instance.
+  ///   - f: Transform function.
+  /// - Returns: A Try instance.
+  static func zip<T1, T2, V3>(_ try1: T1, _ try2: T2, _ f: (T1.Value, T2.Value) throws -> V3)
+    -> Try<V3> where
+    T1: TryConvertibleType,
+    T2: TryConvertibleType
+  {
+    return try1.asTry().zipWith(try2, f)
+  }
+  
+  /// Zip a Sequence of TryConvertibleType with a result selector function.
+  ///
+  /// - Parameters:
+  ///   - tries: A Sequence of TryConvertibleType.
+  ///   - resultSelector: Selector function.
+  /// - Returns: A Try instance.
+  static func zip<TC, V2, S>(_ tries: S, _ resultSelector: ([TC.Value]) throws -> V2)
+    -> Try<V2> where
+    TC: TryConvertibleType,
+    S: Sequence, S.Element == TC
+  {
+    do {
+      let values = try tries.map({try $0.asTry().getOrThrow()})
+      return try .success(resultSelector(values))
+    } catch {
+      return .failure(error)
+    }
+  }
+  
+  /// Zip a Sequence of TryConvertibleType with a result selector function.
+  ///
+  /// - Parameters:
+  ///   - resultSelector: Selector function.
+  ///   - tries: Varargs of TryConvertibleType.
+  /// - Returns: A Try instance.
+  static func zip<TC, V2>(_ resultSelector: ([TC.Value]) throws -> V2,
+                          _ tries: TC...) -> Try<V2> where
+    TC: TryConvertibleType
+  {
+    return zip(tries, resultSelector)
+  }
+  
+  /// Zip with another Try instance to produce a Try of another type.
+  ///
+  /// - Parameters:
+  ///   - try2: A TryConvertibleType instance.
+  ///   - f: Transform function.
+  /// - Returns: A Try instance.
+  func zipWith<TC, V2>(_ try2: TC, _ f: (Value, TC.Value) throws -> V2)
+    -> Try<V2> where TC: TryConvertibleType
+  {
+    return flatMap({v1 in try2.asTry().map({try f(v1, $0)})})
+  }
+}
+

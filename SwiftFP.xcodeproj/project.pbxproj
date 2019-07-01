@@ -12,7 +12,6 @@
 		D3068D452058BD27000BD522 /* SwiftFP.h in Headers */ = {isa = PBXBuildFile; fileRef = D3068D372058BD27000BD522 /* SwiftFP.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3068D572058BDD5000BD522 /* Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3068D4E2058BDD5000BD522 /* Optional.swift */; };
 		D3068D5A2058BDD5000BD522 /* Try.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3068D512058BDD5000BD522 /* Try.swift */; };
-		D3068D5E2058BDD5000BD522 /* Try+Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3068D552058BDD5000BD522 /* Try+Optional.swift */; };
 		D3068D5F2058BDD5000BD522 /* Either.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3068D562058BDD5000BD522 /* Either.swift */; };
 		D3068D672058BDE1000BD522 /* TryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3068D622058BDE1000BD522 /* TryTest.swift */; };
 		D3068D682058BDE1000BD522 /* EitherTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3068D632058BDE1000BD522 /* EitherTest.swift */; };
@@ -20,7 +19,6 @@
 		D3068D6E2058C0E6000BD522 /* FPError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3068D6D2058C0E6000BD522 /* FPError.swift */; };
 		D30DE336205A11CC00A66C8F /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D30DE335205A11CC00A66C8F /* README.md */; };
 		D315FE8A205B6E050050CED0 /* SwiftFP.podspec in Resources */ = {isa = PBXBuildFile; fileRef = D315FE89205B6E050050CED0 /* SwiftFP.podspec */; };
-		D3F70EAE20591E970039A97F /* Try+Zip.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F70EAD20591E970039A97F /* Try+Zip.swift */; };
 		FA98F433CD29E8A1C6F3A260 /* Pods_SwiftFPTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74E827F78B340C57BF7EC0DA /* Pods_SwiftFPTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -46,7 +44,6 @@
 		D3068D442058BD27000BD522 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D3068D4E2058BDD5000BD522 /* Optional.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Optional.swift; sourceTree = "<group>"; };
 		D3068D512058BDD5000BD522 /* Try.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Try.swift; sourceTree = "<group>"; };
-		D3068D552058BDD5000BD522 /* Try+Optional.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Try+Optional.swift"; sourceTree = "<group>"; };
 		D3068D562058BDD5000BD522 /* Either.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Either.swift; sourceTree = "<group>"; };
 		D3068D602058BDE0000BD522 /* SwiftFPTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SwiftFPTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		D3068D622058BDE1000BD522 /* TryTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TryTest.swift; sourceTree = "<group>"; };
@@ -55,7 +52,6 @@
 		D3068D6D2058C0E6000BD522 /* FPError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FPError.swift; sourceTree = "<group>"; };
 		D30DE335205A11CC00A66C8F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D315FE89205B6E050050CED0 /* SwiftFP.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SwiftFP.podspec; sourceTree = "<group>"; };
-		D3F70EAD20591E970039A97F /* Try+Zip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Try+Zip.swift"; sourceTree = "<group>"; };
 		D430AC7981A484008019F5D1 /* Pods-SwiftFP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftFP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftFP/Pods-SwiftFP.debug.xcconfig"; sourceTree = "<group>"; };
 		FE404559083ED7A0154F7D6C /* Pods_SwiftFP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftFP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -132,8 +128,6 @@
 				D3068D6D2058C0E6000BD522 /* FPError.swift */,
 				D3068D4E2058BDD5000BD522 /* Optional.swift */,
 				D3068D512058BDD5000BD522 /* Try.swift */,
-				D3068D552058BDD5000BD522 /* Try+Optional.swift */,
-				D3F70EAD20591E970039A97F /* Try+Zip.swift */,
 			);
 			path = SwiftFP;
 			sourceTree = "<group>";
@@ -306,9 +300,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3068D6E2058C0E6000BD522 /* FPError.swift in Sources */,
-				D3F70EAE20591E970039A97F /* Try+Zip.swift in Sources */,
 				D3068D572058BDD5000BD522 /* Optional.swift in Sources */,
-				D3068D5E2058BDD5000BD522 /* Try+Optional.swift in Sources */,
 				D3068D5F2058BDD5000BD522 /* Either.swift in Sources */,
 				D3068D5A2058BDD5000BD522 /* Try.swift in Sources */,
 			);
