@@ -14,9 +14,9 @@ public extension Optional {
   ///   - optionals: A Sequence of OptionalConvertibleType.
   ///   - resultSelector: Selector function.
   /// - Returns: An Optional instance.
-  static func zip<W1, W2, OC, S>(_ optionals: S, _ resultSelector: ([W1]) throws -> W2)
+  static func zip<OC, W2, S>(_ optionals: S, _ resultSelector: ([OC.Value]) throws -> W2)
     -> Optional<W2> where
-    OC: OptionalConvertibleType, OC.Value == W1,
+    OC: OptionalConvertibleType,
     S: Sequence, S.Element == OC
   {
     let tries = optionals.map({$0.asOptional().asTry()})
@@ -29,10 +29,9 @@ public extension Optional {
   ///   - resultSelector: Selector function.
   ///   - optionals: Varargs of OptionalConvertibleType.
   /// - Returns: An Optional instance.
-  static func zip<W1, W2, OC>(
-    _ resultSelector: ([W1]) throws -> W2,
-    _ optionals: OC...) -> Optional<W2> where
-    OC: OptionalConvertibleType, OC.Value == W1
+  static func zip<OC, W2>(_ resultSelector: ([OC.Value]) throws -> W2,
+                          _ optionals: OC...) -> Optional<W2> where
+    OC: OptionalConvertibleType
   {
     return zip(optionals, resultSelector)
   }
@@ -43,8 +42,8 @@ public extension Optional {
   ///   - optional: An OptionalConvertibleType instance.
   ///   - resultSelector: Selector function.
   /// - Returns: An Optional instance.
-  func zipWith<W2, W3, OC>(_ optional: OC, _ resultSelector: (Wrapped, W2) throws -> W3)
-    -> Optional<W3> where OC: OptionalConvertibleType, OC.Value == W2
+  func zipWith<OC, W2>(_ optional: OC, _ resultSelector: (Wrapped, OC.Value) throws -> W2)
+    -> Optional<W2> where OC: OptionalConvertibleType
   {
     return asTry().zipWith(optional.asOptional(), resultSelector).value
   }
