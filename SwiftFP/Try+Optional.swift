@@ -23,7 +23,7 @@ public extension Try {
   ///   - optional: An Optional instance.
   ///   - error: The error to be thrown when there is no value.
   /// - Returns: A Try instance.
-  public static func from<Val>(_ optional: Optional<Val>, _ error: Error) -> Try<Val> {
+  static func from<Val>(_ optional: Optional<Val>, _ error: Error) -> Try<Val> {
     switch optional {
     case .some(let value):
       return Try<Val>.success(value)
@@ -40,7 +40,7 @@ public extension Try {
   ///   - optional: An Optional instance.
   ///   - error: The error to be thrown when there is no value.
   /// - Returns: A Try instance.
-  public static func from<Val>(_ optional: Optional<Val>, _ error: String) -> Try<Val> {
+  static func from<Val>(_ optional: Optional<Val>, _ error: String) -> Try<Val> {
     return Try.from(optional, FPError(error))
   }
 
@@ -49,7 +49,7 @@ public extension Try {
   ///
   /// - Parameter optional: An Optional instance.
   /// - Returns: A Try instance.
-  public static func from<Val>(_ optional: Optional<Val>) -> Try<Val> {
+  static func from<Val>(_ optional: Optional<Val>) -> Try<Val> {
     return Try.from(optional, "\(Val.self) cannot be nil")
   }
 }
