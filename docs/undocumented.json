@@ -1,0 +1,362 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/haipham/Desktop/SwiftFP/SwiftFP/Either.swift",
+      "line": null,
+      "symbol": "Either",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/haipham/Desktop/SwiftFP/SwiftFP/Either.swift",
+      "line": null,
+      "symbol": "EitherType",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/haipham/Desktop/SwiftFP/SwiftFP/Either.swift",
+      "line": 11,
+      "symbol": "EitherConvertibleType.Left",
+      "symbol_kind": "source.lang.swift.decl.associatedtype",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/haipham/Desktop/SwiftFP/SwiftFP/Either.swift",
+      "line": 12,
+      "symbol": "EitherConvertibleType.Right",
+      "symbol_kind": "source.lang.swift.decl.associatedtype",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/haipham/Desktop/SwiftFP/SwiftFP/Either.swift",
+      "line": 14,
+      "symbol": "EitherConvertibleType.asEither()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/haipham/Desktop/SwiftFP/SwiftFP/Either.swift",
+      "line": 17,
+      "symbol": "EitherType",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/haipham/Desktop/SwiftFP/SwiftFP/Either.swift",
+      "line": 76,
+      "symbol": "Either",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/haipham/Desktop/SwiftFP/SwiftFP/Either.swift",
+      "line": 77,
+      "symbol": "Either.left(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/haipham/Desktop/SwiftFP/SwiftFP/Either.swift",
+      "line": 78,
+      "symbol": "Either.right(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/haipham/Desktop/SwiftFP/SwiftFP/Either.swift",
+      "line": 80,
+      "symbol": "Either.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/haipham/Desktop/SwiftFP/SwiftFP/Either.swift",
+      "line": 112,
+      "symbol": "Either.asEither()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/haipham/Desktop/SwiftFP/SwiftFP/Either.swift",
+      "line": 140,
+      "symbol": "Projection.asEither()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/haipham/Desktop/SwiftFP/SwiftFP/Either.swift",
+      "line": 147,
+      "symbol": "LeftProjection.value",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/haipham/Desktop/SwiftFP/SwiftFP/Either.swift",
+      "line": 155,
+      "symbol": "LeftProjection.map(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/haipham/Desktop/SwiftFP/SwiftFP/Either.swift",
+      "line": 165,
+      "symbol": "LeftProjection.flatMap(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/haipham/Desktop/SwiftFP/SwiftFP/Either.swift",
+      "line": 180,
+      "symbol": "RightProjection.value",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/haipham/Desktop/SwiftFP/SwiftFP/Either.swift",
+      "line": 188,
+      "symbol": "RightProjection.map(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/haipham/Desktop/SwiftFP/SwiftFP/Either.swift",
+      "line": 198,
+      "symbol": "RightProjection.flatMap(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/haipham/Desktop/SwiftFP/SwiftFP/FPError.swift",
+      "line": null,
+      "symbol": "FPError",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/haipham/Desktop/SwiftFP/SwiftFP/FPError.swift",
+      "line": 10,
+      "symbol": "FPError",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/haipham/Desktop/SwiftFP/SwiftFP/FPError.swift",
+      "line": 13,
+      "symbol": "FPError.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/haipham/Desktop/SwiftFP/SwiftFP/Optional.swift",
+      "line": 11,
+      "symbol": "OptionalConvertibleType.Value",
+      "symbol_kind": "source.lang.swift.decl.associatedtype",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/haipham/Desktop/SwiftFP/SwiftFP/Optional.swift",
+      "line": 13,
+      "symbol": "OptionalConvertibleType.asOptional()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/haipham/Desktop/SwiftFP/SwiftFP/Optional.swift",
+      "line": 18,
+      "symbol": "OptionalType.just(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/haipham/Desktop/SwiftFP/SwiftFP/Optional.swift",
+      "line": 19,
+      "symbol": "OptionalType.nothing()",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/haipham/Desktop/SwiftFP/SwiftFP/Optional.swift",
+      "line": 20,
+      "symbol": "OptionalType.value",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/haipham/Desktop/SwiftFP/SwiftFP/Optional.swift",
+      "line": 24,
+      "symbol": "OptionalType.isSome",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/haipham/Desktop/SwiftFP/SwiftFP/Optional.swift",
+      "line": 28,
+      "symbol": "OptionalType.isNothing",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/haipham/Desktop/SwiftFP/SwiftFP/Optional.swift",
+      "line": 105,
+      "symbol": "Optional.Value",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/haipham/Desktop/SwiftFP/SwiftFP/Optional.swift",
+      "line": 107,
+      "symbol": "Optional.just(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/haipham/Desktop/SwiftFP/SwiftFP/Optional.swift",
+      "line": 111,
+      "symbol": "Optional.nothing()",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/haipham/Desktop/SwiftFP/SwiftFP/Optional.swift",
+      "line": 115,
+      "symbol": "Optional.asOptional()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/haipham/Desktop/SwiftFP/SwiftFP/Optional.swift",
+      "line": 119,
+      "symbol": "Optional.value",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/haipham/Desktop/SwiftFP/SwiftFP/Try.swift",
+      "line": null,
+      "symbol": "Try",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/haipham/Desktop/SwiftFP/SwiftFP/Try.swift",
+      "line": null,
+      "symbol": "Try",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/haipham/Desktop/SwiftFP/SwiftFP/Try.swift",
+      "line": null,
+      "symbol": "Try",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/haipham/Desktop/SwiftFP/SwiftFP/Try.swift",
+      "line": null,
+      "symbol": "Try",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/haipham/Desktop/SwiftFP/SwiftFP/Try.swift",
+      "line": null,
+      "symbol": "TryType",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/haipham/Desktop/SwiftFP/SwiftFP/Try.swift",
+      "line": 11,
+      "symbol": "TryConvertibleType.Value",
+      "symbol_kind": "source.lang.swift.decl.associatedtype",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/haipham/Desktop/SwiftFP/SwiftFP/Try.swift",
+      "line": 13,
+      "symbol": "TryConvertibleType.asTry()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/haipham/Desktop/SwiftFP/SwiftFP/Try.swift",
+      "line": 16,
+      "symbol": "TryType",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/haipham/Desktop/SwiftFP/SwiftFP/Try.swift",
+      "line": 26,
+      "symbol": "TryType.asEither()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/haipham/Desktop/SwiftFP/SwiftFP/Try.swift",
+      "line": 159,
+      "symbol": "Try",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/haipham/Desktop/SwiftFP/SwiftFP/Try.swift",
+      "line": 160,
+      "symbol": "Try.success(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/haipham/Desktop/SwiftFP/SwiftFP/Try.swift",
+      "line": 164,
+      "symbol": "Try.failure(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/haipham/Desktop/SwiftFP/SwiftFP/Try.swift",
+      "line": 168,
+      "symbol": "Try.failure(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/haipham/Desktop/SwiftFP/SwiftFP/Try.swift",
+      "line": 175,
+      "symbol": "Try.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/haipham/Desktop/SwiftFP/SwiftFP/Try.swift",
+      "line": 183,
+      "symbol": "Try.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/haipham/Desktop/SwiftFP/SwiftFP/Try.swift",
+      "line": 188,
+      "symbol": "Try.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/haipham/Desktop/SwiftFP/SwiftFP/Try.swift",
+      "line": 195,
+      "symbol": "Try.asTry()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/haipham/Desktop/SwiftFP/SwiftFP/Try.swift",
+      "line": 202,
+      "symbol": "Try.asOptional()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/haipham/Desktop/SwiftFP"
+}
