@@ -6,7 +6,7 @@
 //  Copyright © 2018 Hai Pham. All rights reserved.
 //
 
-extension Try {
+public extension Try {
 
   /// Zip two Try instances to produce a Try of another type.
   ///
@@ -15,11 +15,10 @@ extension Try {
   ///   - try2: A TryConvertibleType instance.
   ///   - f: Transform function.
   /// - Returns: A Try instance.
-  public static func zip<V1, V2, V3, T1, T2>(_ try1: T1, _ try2: T2,
-                                             _ f: (V1, V2) throws -> V3)
+  static func zip<T1, T2, V3>(_ try1: T1, _ try2: T2, _ f: (T1.Val, T2.Val) throws -> V3)
     -> Try<V3> where
-    T1: TryConvertibleType, T1.Val == V1,
-    T2: TryConvertibleType, T2.Val == V2
+    T1: TryConvertibleType,
+    T2: TryConvertibleType
   {
     return try1.asTry().zipWith(try2, f)
   }
@@ -30,10 +29,9 @@ extension Try {
   ///   - tries: A Sequence of TryConvertibleType.
   ///   - resultSelector: Selector function.
   /// - Returns: A Try instance.
-  public static func zip<V1, V2, TC, S>(_ tries: S,
-                                        _ resultSelector: ([V1]) throws -> V2)
+  static func zip<TC, V2, S>(_ tries: S, _ resultSelector: ([TC.Val]) throws -> V2)
     -> Try<V2> where
-    TC: TryConvertibleType, TC.Val == V1,
+    TC: TryConvertibleType,
     S: Sequence, S.Element == TC
   {
     do {
@@ -50,9 +48,9 @@ extension Try {
   ///   - resultSelector: Selector function.
   ///   - tries: Varargs of TryConvertibleType.
   /// - Returns: A Try instance.
-  public static func zip<V1, V2, TC>(_ resultSelector: ([V1]) throws -> V2,
-                                     _ tries: TC...) -> Try<V2> where
-    TC: TryConvertibleType, TC.Val == V1
+  static func zip<TC, V2>(_ resultSelector: ([TC.Val]) throws -> V2,
+                          _ tries: TC...) -> Try<V2> where
+    TC: TryConvertibleType
   {
     return zip(tries, resultSelector)
   }
@@ -63,8 +61,8 @@ extension Try {
   ///   - try2: A TryConvertibleType instance.
   ///   - f: Transform function.
   /// - Returns: A Try instance.
-  public func zipWith<V2, V3, T>(_ try2: T, _ f: (Val, V2) throws -> V3)
-    -> Try<V3> where T: TryConvertibleType, T.Val == V2
+  public func zipWith<TC, V2>(_ try2: TC, _ f: (Val, TC.Val) throws -> V2)
+    -> Try<V2> where TC: TryConvertibleType
   {
     return flatMap({v1 in try2.asTry().map({try f(v1, $0)})})
   }
