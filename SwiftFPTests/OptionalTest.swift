@@ -118,4 +118,15 @@ public final class OptionalTest: XCTestCase {
     XCTAssertTrue(o1c.isSome)
     XCTAssertTrue(o2c.isNothing)
   }
+  
+  public func test_optionalCatchNothing_shouldWork() {
+    /// Setup
+    let o1 = Optional.some(1)
+    let o2 = Optional<Int>.nothing()
+    
+    /// When
+    XCTAssertEqual(o1.catchNothing({fatalError()}).value, 1)
+    XCTAssertEqual(o2.catchNothing({1}).value, 1)
+    XCTAssertNil(o2.catchNothing({throw FPError("")}).value)
+  }
 }

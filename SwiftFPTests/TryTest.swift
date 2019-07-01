@@ -34,6 +34,18 @@ public final class TryTest: XCTestCase {
     XCTAssertEqual(t2.flatMap({a in Try({a})}).value, 1)
     XCTAssertNotNil(t2.flatMap({(_) -> Try<Int> in throw FPError("")}).error)
   }
+  
+  public func test_tryCatchError_shouldWork() {
+    /// Setup
+    let t1 = Try.success(1)
+    let t2 = Try<Int>.failure("Error 1")
+    let t3 = Try<Int>.failure("Error 2")
+    
+    /// When
+    XCTAssertEqual(t1.catchError({_ in fatalError()}).value, 1)
+    XCTAssertEqual(t2.catchError({_ in 1}).value, 1)
+    XCTAssertEqual(t3.catchError({_ in throw FPError("")}).error?.localizedDescription, "")
+  }
 
   public func test_tryGetOrElse_shouldWork() {
     /// Setup
